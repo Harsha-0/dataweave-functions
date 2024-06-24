@@ -1,0 +1,84 @@
+{
+    "setId": "1",
+    "patientId": "",
+    "id": {
+      "value": "A69532",
+      "code": "VISIT"
+    },
+    "identifierCode": "MR",
+    "alternatePatientId": "",
+    "patientName": {
+      "firstName": "Christopher",
+      "middleName": "Alan",
+      "lastName": "Davis",
+      "code": "L"
+    },
+    "mothersMaidenName": {
+      "firstName": "JONES",
+      "lastName": "M"
+    },
+    "dateOfBirth": "2014-01-01",
+    "administrativeSex": "M",
+    "patientAlias": "",
+    "race": {
+      "code": "2016-3",
+      "description": "White",
+      "id": "HL70005"
+    },
+    "patientAddress": [
+      {
+        "line1": "123",
+        "city": "CHEYENNE",
+        "state": "WY",
+        "postalCode": "82002",
+        "append": ""
+      }
+    ],
+    "countyCode": "",
+    "telecom": [
+      {
+        "code": "NET",
+        "number": "4065551234",
+        "type": "phone",
+        "emailAddress": "4065551234",
+        "countryCode": "",
+        "extension": "",
+        "text": "",
+        "anyText": ""
+      }
+    ],
+    "phoneNumberBusiness": "",
+    "primaryLanguage": {
+      "id": "ENG",
+      "name": "ENGLISH",
+      "code": "HL70296"
+    },
+    "maritalStatus": "",
+    "religion": "",
+    "patientAccountNumber": "",
+    "ssnNumber": "",
+    "driversLicenseNumber": "",
+    "mothersIdentifier": "",
+    "ethnicGroup": {
+      "code": "2186-5",
+      "description": "Hispanic or Latino",
+      "id": "HL70189"
+    },
+    "birthPlace": "",
+    "multipleBirthIndicator": "N",
+    "birthOrder": "",
+    "citizenship": "",
+    "veteransMilitaryStatus": "",
+    "nationality": "",
+    "patientDeathDateAndTime": "",
+    "patientDeathIndicator": "N",
+    "identityUnknownIndicator": "",
+    "identityReliabilityCode": "",
+    "lastUpdateDateTime": "",
+    "lastUpdateFacility": "",
+    "speciesCode": "",
+    "breedCode": "",
+    "strain": "",
+    "productionClassCode": "",
+    "tribalCitizenship": ""
+  }

@@ -1,0 +1,16 @@
+{
+      "route": {
+      "code": "IM",
+      "name": "Intramuscular",
+      "id": "HL70162"
+    },
+    "administrationSite": {
+      "code": "LT",
+      "name": "Left Thigh",
+      "id": "HL70163"
+    },
+    "administrationDevice": "",
+    "administrationMethod": "",
+    "routingInstruction": "",
+    "administrationSiteModifier": ""
+  }

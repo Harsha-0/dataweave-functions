@@ -1,0 +1,12 @@
+{ 
+        "queryPriority": "I",
+        "quantityLimitedRequest": {
+            "maxLength": "",
+            "units": ""
+        },
+        "responseModality": "",
+        "modifyIndicator": "",
+        "sortByField": "",
+        "segmentGroupInclusion": ""
+    
+  }

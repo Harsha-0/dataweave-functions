@@ -1,0 +1,44 @@
+{
+      "setId": "1",
+      "observationIdentifier": {
+        "id": "64994-7",
+        "description": "FUNDING PGM ELIG",
+        "code": "NIP003"
+      },
+      "observationMethod": {
+        "id": "VXC40",
+        "description": "Eligibility captured at the immunization level",
+        "code": "CDCPHINVS"
+      },
+      "observationValue": {
+        "id": "V02",
+        "description": "VFC eligible - Medicaid",
+        "code": "HL70064"
+      },
+      "valueType": "CE",
+      "observationSubID": "1",
+      "units": "",
+      "referencesRange": "",
+      "abnormalFlags": "",
+      "probability": "",
+      "natureOfAbnormalTest": "",
+      "observationResultStatus": "F",
+      "effectiveDateOfReferenceRangeValues": "",
+      "userDefinedAccessChecks": "",
+      "dateTimeOfTheObservation": "2014-11-17",
+      "producersReference": "",
+      "responsibleObserver": "",
+      "equipmentInstanceIdentifier": "",
+      "dateTimeOfTheAnalysis": "",
+      "reservedForHarmonizationWithV2.6": "",
+      "performingOrganizationName": {
+        "name": "",
+        "codeType": "",
+        "universalId": "",
+        "uidType": "",
+        "code": "",
+        "identifier": ""
+      },
+      "performingOrganizationAddress": "",
+      "performingOrganizationMedicalDirector": ""
+  }

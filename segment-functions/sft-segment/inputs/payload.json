@@ -1,0 +1,24 @@
+{
+    "softwareVendorOrganization": "SFT",
+    "organizationName": "TrackMy Solutions",
+    "organizationNameTypeCode": "",
+    "idNumber": "",
+    "identifierCheckDigit": "",
+    "checkDigitScheme": "",
+    "assigningAuthority": {
+      "namespaceId": "&",
+      "universalId": "2.16.840.1.113883.3.10009",
+      "universalIdType": ""
+    },
+    "organization": {
+      "identifierTypeCode": "ISO"
+    },
+    "assigningFacility": "",
+    "nameRepresentationCode": "",
+    "organizationIdentifier": "",
+    "softwareCertifiedVersionOrReleaseNumber": "052024.1.1",
+    "softwareProductName": "VISIT",
+    "softwareBinaryId": "",
+    "softwareProductInformation": "",
+"softwareInstallDate": ""
+  }

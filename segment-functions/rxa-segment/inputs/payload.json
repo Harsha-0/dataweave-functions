@@ -1,0 +1,44 @@
+{
+      "giveSubIDCounter": "0",
+      "administrationSubIDCounter": "1",
+      "dateTimeStartOfAdministration": "2016-09-08T00:00:00",
+      "dateTimeEndOfAdministration": "2016-09-08T00:00:00",
+      "administeredCode": {
+        "id": "110",
+        "description": "DTaP-HepB-IPV",
+        "code": "CVX"
+      },
+      "administeredAmount": "0.5",
+      "administeredUnits": {
+        "code": "mL",
+        "unit": "milliliters",
+        "id": "UCUM"
+      },
+      "administeredDosageForm": "",
+      "administrationNotes": {
+        "id": "00",
+        "name": "New immunization record",
+        "code": "NIP001"
+      },
+      "administeringProvider": "",
+      "administeredAtLocation": "SIISCLIENT05131975",
+      "administeredPer": "",
+      "administeredStrength": "",
+      "administeredStrengthUnits": "",
+      "substanceLotNumber": "ABC123",
+      "substanceExpirationDate": "2014-12-31",
+      "substanceManufacturerName": {
+        "id": "SKB",
+        "name": "GlaxoSmithKline",
+        "code": "HL70227"
+      },
+      "substanceTreatmentRefusalReason": "",
+      "indication": "",
+      "CompletionStatus": "CP",
+      "actionCode": "A",
+      "systemEntryDateTime": "",
+      "administeredDrugStrengthVolume": "",
+      "administeredDrugStrengthVolumeUnits": "",
+      "administeredBarcodeIdentifier": "",
+      "pharmacyOrderType": ""
+  }

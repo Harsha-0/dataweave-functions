@@ -1,0 +1,32 @@
+{
+      "setId": "1",
+      "specimenId": {
+        "placerAssignedId": {
+          "entityIdentifier": "VISIT-ENC-20",
+          "name": "NAME HOSPITAL",
+          "universalId": "15D1234567",
+          "uidType": "CLIA"
+        },
+        "fillerAssignedId": {
+          "entityIdentifier": "VISIT-ENC-20",
+          "name": "NAME HOSPITAL",
+          "universalId": "15D1234567",
+          "uidType": "CLIA"
+        }
+      },
+      "specimenType": {
+        "identifierCode": "440500007",
+        "description": "Capillary blood specimen",
+        "codingSystem": "SCT"
+      },
+      "specimenCollectionMethod": {
+        "resultCode": "Capillary specimen",
+        "text": "CAP"
+      },
+      "specimenSourceSite": {
+        "resultCode": "Venous structure of digit",
+        "text": "181395001"
+      },
+      "specimenCollectionDateTime": "201608151030-0500",
+      "specimenReceivedDateTime": "202209281232-0500"
+  }

@@ -4,4 +4,4 @@
 
 ## QPD Function
 
-<a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=Harsha-0%2Fdataweave-functions&path=segment-functions%2Fqpd-segment"><img width="300" src="/images/dwplayground-button.png"><a>
+<a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=Harsha-0%2Fdataweave-functions&path=segment-functions%2Fqpd-segments"><img width="300" src="/images/dwplayground-button.png"><a>

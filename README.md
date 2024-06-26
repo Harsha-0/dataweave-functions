@@ -13,7 +13,7 @@ Click below to try `MSH` function in DataWeave:
 #### The QPD segment defines the parameters of the query.
 View `QPD` fields and definition:
 
-<a href="[https://hl7-definition.caristix.com/v2/HL7v2.7/Segments/MSH](https://hl7-definition.caristix.com/v2/HL7v2.7/Segments/QPD)"><img width="100" height="50" src="/images/hl7-logo.png"><a>
+<a href="https://hl7-definition.caristix.com/v2/HL7v2.7/Segments/QPD"><img width="100" height="50" src="/images/hl7-logo.png"><a>
 
 Click below to try `QPD` function in DataWeave:
 

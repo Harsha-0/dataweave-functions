@@ -1,8 +1,9 @@
 ## MSH Function
 #### The MSH segment defines the intent, source, destination, and some specifics of the syntax of a message.
 
-View `MSH` fields and definition
-<a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=Harsha-0%2Fdataweave-functions&path=segment-functions%2Fmsh-segment"><img width="300" src="/images/hl-logo.jpg"><a>
+View `MSH` fields and definition:
+
+<a href="https://hl7-definition.caristix.com/v2/HL7v2.7/Segments/MSH"><img width="100" height="50" src="/images/hl7-logo.png"><a>
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=Harsha-0%2Fdataweave-functions&path=segment-functions%2Fmsh-segment"><img width="300" src="/images/dwplayground-button.png"><a>
 

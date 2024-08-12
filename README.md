@@ -1,4 +1,4 @@
-## MSH Function
+## MSH (Message Header) Function
 #### The MSH segment defines the intent, source, destination, and some specifics of the syntax of a message.
 
 View `MSH` fields and definition:

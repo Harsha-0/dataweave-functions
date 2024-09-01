@@ -7,7 +7,7 @@ View `MSH` fields and definition:
 
 Click below to try `MSH` function in DataWeave:
 
-<a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=Harsha-0%2Fdataweave-functions&path=segment-functions%2Fmsh-segment"><img width="300" src="/images/dwplayground-button.png"><a>
+<a href="https://copperfox-dw-playground-lrb5nkfcua-uc.a.run.app?projectMethod=GHRepo&repo=Harsha-0%2Fdataweave-functions&path=segment-functions%2Fmsh-segment"><img width="300" src="/images/dwplayground-button.png"><a>
 
 ## QPD (Query Parameter Definition) Function
 #### The QPD segment defines the parameters of the query.

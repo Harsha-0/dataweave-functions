@@ -1,0 +1,50 @@
+{
+  "sendingApp": {
+    "name": "3.1",
+    "id": "3.2",
+    "code": "3.3"
+  },
+  "sendingFacility": {
+    "name": "4.1",
+    "id": "4.2",
+    "code": "4.3"
+  },
+  "receivingApp": {
+    "name": "5.1",
+    "id": "5.2",
+    "code": "5.3"
+  },
+  "receivingFacility": {
+    "name": "6.1",
+    "id": "6.2",
+    "code": "6.3"
+  },
+  "dateTime": "7",
+  "security": "8",
+  "messageType": {
+    "type": "9.1",
+    "code": "9.2",
+    "id": "9.3"
+  },
+  "messageControlId": "10",
+  "processsingId": "11",
+  "versionId": "12",
+  "sequenceNumber": "13",
+  "continuationPointer": "14",
+  "acceptAckType": "15",
+  "appAckType": "16",
+  "countryCode": "17",
+  "characterSet": "18",
+  "principalLan": "19",
+  "alternateChar": "20",
+  "messageProfileIdentifier": {
+    "name": "21.1",
+    "code": "21.2",
+    "identifier": "21.3",
+    "id": "21.4"
+  },
+  "sendingResponsibleOrg": "22",
+  "receivingResponsibleOrg": "23",
+  "sendingNetworkAddress": "24",
+  "receivingNetworkAddress": "25"
+}

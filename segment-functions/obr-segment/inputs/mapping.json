@@ -1,0 +1,70 @@
+{
+      "orderControl": "2",
+      "placerOrderNumber": {
+        "entityIdentifier": "3.1", 
+        "name": "3.2",
+        "universalId": "3.3",
+        "uidType": "3.4"
+      },
+      "fillerOrderNumber": {
+        "entityIdentifier": "4.1",
+        "name": "4.2",
+        "universalId": "4.3",
+        "uidType": "4.4"
+      },
+      "testRequested": {
+        "identifier": "5.1",
+        "text": "5.2",
+        "codingSystem": "5.3",
+        "codingSystemVersion": "5.4"
+      },
+      "observationBeginDateTime": "6",
+      "observationEndDateTime": "7",
+      "dateTimeOfTransaction": "8",
+      "relevantClinicalInfo": "9",
+      "specimenReceivedDateTime": "10",
+      "specimenSource": "11",
+      "orderingProvider": {
+        "idNumber": "12.1",
+        "lastName": "12.2",
+        "firstName": "12.3",
+        "MI": "12.4",
+        "suffix": "12.5",
+        "prefix": "12.6"
+      },
+      "callBackPhoneNumber": [
+        {
+          "code": "WPN",
+          "type": "",
+          "emailAddress": "",
+          "countryCode": "",
+          "extension": "",
+          "text": "",
+          "anyText": ""
+        }
+      ],
+      "resultsDateTime": "14",
+      "resultStatus": "15",
+      "parentResult": {
+        "identifier": "16.1",
+        "text": "16.2",
+        "codingSystem": "16.3",
+        "parentObsSubId": "16.4",
+        "parentObsValueDesc": "16.5"
+      },
+      "parent": {
+        "placerAssignedId": "17.1",
+        "fillerAssignedId": "17.2"
+      },
+      "reasonForStudy": {
+        "identifier": "18.1",
+        "text": "18.2",
+        "codingSystem": "18.3",
+        "date": "18.4"
+      },
+      "principalResultInterpreter": {
+        "code": "19.1",
+        "firstName": "19.2",
+        "lastName": "19.3"
+      }
+  }

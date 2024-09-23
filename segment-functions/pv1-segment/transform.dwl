@@ -11,10 +11,19 @@ fun parseDate(date: String):Any = if(try(()-> date as LocalDateTime {format: "yy
 
 var PV1 = "PV1|:setId:|:patientClass:|:assignedPatientLocation.code:^:assignedPatientLocation.description:"
 
+var result = {
+    (mapping.setId): payload.setId,
+    (mapping.patientClass): payload.patientClass,
+    assignedPatientLocation: {
+        (mapping.assignedPatientLocation.code): payload.assignedPatientLocation.code,
+        (mapping.assignedPatientLocation.description): payload.assignedPatientLocation.description
+    }
+}
+
 fun pv1(data) = PV1
-replace ":setId:" with (data.setId default "")
-replace ":patientClass:" with (data.patientClass default "")
-replace ":assignedPatientLocation.code:" with (data.assignedPatientLocation.code default "")
-replace ":assignedPatientLocation.description:" with (data.assignedPatientLocation.description default "")
+replace ":setId:" with (data."2" default "")
+replace ":patientClass:" with (data."3" default "")
+replace ":assignedPatientLocation.code:" with (data.assignedPatientLocation."4.1" default "")
+replace ":assignedPatientLocation.description:" with (data.assignedPatientLocation."4.2" default "")
 ---
-pv1(payload)
+pv1(result)

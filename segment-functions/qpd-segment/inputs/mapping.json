@@ -1,0 +1,26 @@
+{
+    "messageQueryName": {
+      "code": "2.1",
+      "name": "2.2",
+      "id": "2.3"
+    },
+    "queryTag": "3",
+    "id": {
+      "value": "4.1"
+    },
+    "identifierCode": "4.2",
+    "lastName": "5.1",
+    "firstName": "5.2",
+    "middleName": "5.3",
+    "motherMaidenName": {
+      "lastName": "6.1",
+      "firstName": "6.2",
+      "middleName": "6.3"
+    },
+    "dateOfBirth": "7",
+    "gender": "8",
+    "multipleBirthIndicator": "10",
+    "birthOrder": "11",
+    "clientLastUpdatedDate": "12",
+    "clientLastUpdateFacility": "13"
+}

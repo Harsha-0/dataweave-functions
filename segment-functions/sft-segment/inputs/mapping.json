@@ -1,0 +1,24 @@
+{
+    "softwareVendorOrganization": "1",
+    "organizationName": "2",
+    "organizationNameTypeCode": "3",
+    "idNumber": "4",
+    "identifierCheckDigit": "5",
+    "checkDigitScheme": "6",
+    "assigningAuthority": {
+      "namespaceId": "7.1",
+      "universalId": "7.2",
+      "universalIdType": "7.3"
+    },
+    "organization": {
+      "identifierTypeCode": "8.1"
+    },
+    "assigningFacility": "9",
+    "nameRepresentationCode": "10",
+    "organizationIdentifier": "11",
+    "softwareCertifiedVersionOrReleaseNumber": "12",
+    "softwareProductName": "13",
+    "softwareBinaryId": "14",
+    "softwareProductInformation": "15",
+	"softwareInstallDate": "16"
+}

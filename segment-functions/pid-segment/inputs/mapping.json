@@ -1,0 +1,84 @@
+{
+    "setId": "2",
+    "patientId": "3",
+    "id": {
+      "value": "4.1",
+      "code": "4.2"
+    },
+    "identifierCode": "5",
+    "alternatePatientId": "6",
+    "patientName": {
+      "firstName": "7.1",
+      "middleName": "7.2",
+      "lastName": "7.3",
+      "code": "7.4"
+    },
+    "mothersMaidenName": {
+      "firstName": "8.1",
+      "lastName": "8.2"
+    },
+    "dateOfBirth": "9",
+    "administrativeSex": "10",
+    "patientAlias": "11",
+    "race": {
+      "code": "12.1",
+      "description": "12.2",
+      "id": "12.3"
+    },
+    "patientAddress": [
+      {
+        "line1": "123",
+        "city": "CHEYENNE",
+        "state": "WY",
+        "postalCode": "82002",
+        "append": ""
+      }
+    ],
+    "countyCode": "",
+    "telecom": [
+      {
+        "code": "NET",
+        "number": "4065551234",
+        "type": "phone",
+        "emailAddress": "4065551234",
+        "countryCode": "",
+        "extension": "",
+        "text": "",
+        "anyText": ""
+      }
+    ],
+    "phoneNumberBusiness": "16",
+    "primaryLanguage": {
+      "id": "17.1",
+      "name": "17.2",
+      "code": "17.3"
+    },
+    "maritalStatus": "18",
+    "religion": "19",
+    "patientAccountNumber": "20",
+    "ssnNumber": "21",
+    "driversLicenseNumber": "22",
+    "mothersIdentifier": "23",
+    "ethnicGroup": {
+      "code": "24.1",
+      "description": "24.2",
+      "id": "24.3"
+    },
+    "birthPlace": "25",
+    "multipleBirthIndicator": "26",
+    "birthOrder": "27",
+    "citizenship": "28",
+    "veteransMilitaryStatus": "29",
+    "nationality": "30",
+    "patientDeathDateAndTime": "31",
+    "patientDeathIndicator": "32",
+    "identityUnknownIndicator": "33",
+    "identityReliabilityCode": "34",
+    "lastUpdateDateTime": "35",
+    "lastUpdateFacility": "36",
+    "speciesCode": "37",
+    "breedCode": "38",
+    "strain": "39",
+    "productionClassCode": "40",
+    "tribalCitizenship": "41"
+  }

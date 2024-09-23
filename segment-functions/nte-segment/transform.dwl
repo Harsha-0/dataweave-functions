@@ -11,10 +11,18 @@ fun parseDate(date: String):Any = if(try(()-> date as LocalDateTime {format: "yy
 
 var NTE ="NTE|:setId:|:sourceOfComment:|::comment:|:commentType:|"
 
+var result = {
+    (mapping.setId): payload.setId,
+    (mapping.sourceOfComment): payload.sourceOfComment,
+    (mapping.comment): payload.comment,
+    (mapping.commentType): payload.commentType
+}
+
+
 fun nte(data) =NTE
-replace ":setId:" with (data.setId default "")
-replace ":sourceOfComment:" with (data.sourceOfComment default "")
-replace "::comment:" with (data.comment default "")
-replace ":commentType:" with (data.commentType default "")
+replace ":setId:" with (data."1" default "")
+replace ":sourceOfComment:" with (data."2" default "")
+replace "::comment:" with (data."3" default "")
+replace ":commentType:" with (data."4" default "")
 ---
-nte(payload)
+nte(result)

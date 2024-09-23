@@ -11,16 +11,33 @@ fun parseDate(date: String):Any = if(try(()-> date as LocalDateTime {format: "yy
 
 var RXR ="RXR|:route.code:^:route.name:^:route.id:|:administrationSite.code:^:administrationSite.name:^:administrationSite.id:|:administrationDevice:|:administrationMethod:|:routingInstruction:|:administrationSiteModifier:|"
 
+var result = {
+    route:{
+        (mapping.route.code) : payload.route.code,
+        (mapping.route.name) : payload.route.name,
+        (mapping.route.id) : payload.route.id
+    },
+    administrationSite:{
+        (mapping.administrationSite.code): payload.administrationSite.code,
+        (mapping.administrationSite.name): payload.administrationSite.name,
+        (mapping.administrationSite.id): payload.administrationSite.id,
+    },
+    (mapping.administrationDevice): payload.administrationDevice,
+    (mapping.administrationMethod): payload.administrationMethod,
+    (mapping.routingInstruction): payload.routingInstruction,
+    (mapping.administrationSiteModifier): payload.administrationSiteModifier
+}
+
 fun rxr(data) = RXR
-replace ":route.code:" with( data.route.code default "")
-replace ":route.name:" with (data.route.name default "")
-replace ":route.id:" with (data.route.id default "")
-replace ":administrationSite.code:" with (data.administrationSite.code default "")
-replace ":administrationSite.name:" with (data.administrationSite.name default "")
-replace ":administrationSite.id:" with (data.administrationSite.id default "")
-replace ":administrationDevice:" with (data.administrationDevice default "")
-replace ":administrationMethod:" with (data.administrationMethod default "")
-replace ":routingInstruction:" with (data.routingInstruction default "")
-replace ":administrationSiteModifier:" with (data.administrationSiteModifier default "")
+replace ":route.code:" with( data.route."2.1" default "")
+replace ":route.name:" with (data.route."2.2" default "")
+replace ":route.id:" with (data.route."2.3" default "")
+replace ":administrationSite.code:" with (data.administrationSite."3.1" default "")
+replace ":administrationSite.name:" with (data.administrationSite."3.2" default "")
+replace ":administrationSite.id:" with (data.administrationSite."3.3" default "")
+replace ":administrationDevice:" with (data."4" default "")
+replace ":administrationMethod:" with (data."5" default "")
+replace ":routingInstruction:" with (data."6" default "")
+replace ":administrationSiteModifier:" with (data."7" default "")
 ---
-rxr(payload)
+rxr(result)

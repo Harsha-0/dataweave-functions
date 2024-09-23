@@ -1,0 +1,17 @@
+{
+      "route": {
+      "code": "2.1",
+      "name": "2.2",
+      "id": "2.3"
+    },
+    "administrationSite": {
+      "code": "3.1",
+      "name": "3.2",
+      "id": "3.3"
+    },
+    "administrationDevice": "4",
+    "administrationMethod": "5",
+    "routingInstruction": "6",
+    "administrationSiteModifier": "7"
+}
+  

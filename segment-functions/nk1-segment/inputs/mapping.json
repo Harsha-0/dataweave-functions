@@ -1,0 +1,68 @@
+{
+      "setId": "2",
+      "name": {
+        "firstName": "3.1",
+        "lastName": "3.2"
+      },
+      "relationship": {
+        "code": "4.1",
+        "name": "4.2",
+        "id": "4.3"
+      },
+      "address": [
+        {
+          "line1": "123",
+          "line2": "MAIN STREET",
+          "city": "CHEYENNE",
+          "state": "WY",
+          "postalCode": "82002",
+          "append": ""
+        }
+      ],
+      "phoneNumber": [
+        {
+          "code": "NET",
+          "number": "",
+          "type": "PHONE",
+          "emailAddress": "4065551234",
+          "countryCode": "",
+          "extension": "",
+          "text": "",
+          "anyText": ""
+        }
+      ],
+      "businessPhoneNumber": "7",
+      "contactRole": "8",
+      "startDate": "9",
+      "endDate": "10",
+      "nextOfKinAssociatedPartiesJobTitle": "11",
+      "nextOfKinAssociatedPartiesJobCodeClass": "12",
+      "nextOfKinAssociatedPartiesEmployeeNumber": "13",
+      "nextOfKinAssociatedPartysIdentifiers": "14",
+      "nextOfKinBirthPlace": "15",
+      "organizationName": "16",
+      "maritalStatus": "17",
+      "administrativeSex": "18",
+      "dateTimeOfBirth": "19",
+      "livingDependency": "20",
+      "ambulatoryStatus": "21",
+      "citizenship": "22",
+      "primaryLan": "23",
+      "livingArrangement": "24",
+      "publicityCode": "25",
+      "protectionIndicator": "26",
+      "studentIndicator": "27",
+      "religion": "28",
+      "mothersMaidenName": "29",
+      "nationality": "30",
+      "ethnicGroup": "31",
+      "contactReason": "32",
+      "contactPersonsName": "33",
+      "contactPersonsTelephoneNumber": "34",
+      "contactPersonsAddress": "35",
+      "jobStatus": "36",
+      "race": "37",
+      "handicap": "38",
+      "contactPersonSocialSecurityNumber": "39",
+      "vipIndicator": "40"
+  }

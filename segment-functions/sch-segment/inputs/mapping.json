@@ -1,0 +1,12 @@
+ {
+    "placerAppointmentId": "2",
+    "fillerAppointmentId": "3",
+    "appointmentType": "4",
+    "appointmentDuration": "5",
+    "appointmentDurationUnits": "6",
+    "appointmentTimingQuantity": {
+      "startDateTime": "7.1",
+      "endDateTime": "7.2"
+    },
+    "fillerStatusCode": "8"
+  }

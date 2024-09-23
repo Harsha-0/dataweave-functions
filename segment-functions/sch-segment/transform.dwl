@@ -11,18 +11,27 @@ fun parseDate(date: String):Any = if(try(()-> date as LocalDateTime {format: "yy
 
 var SCH = "SCH|:placerAppointmentId:|:fillerAppointmentId:||||||:appointmentType:||||:appointmentTimingQuantity.startDateTime:||||||||||||||:fillerStatusCode:"
 
+var result = {
+    (mapping.placerAppointmentId): payload.placerAppointmentId,
+    (mapping.fillerAppointmentId): payload.fillerAppointmentId,
+    (mapping.appointmentType): payload.appointmentType,
+    (mapping.appointmentDuration): payload.appointmentDuration,
+    (mapping.appointmentDurationUnits): payload.appointmentDurationUnits,
+    appointmentTimingQuantity: {
+        (mapping.appointmentTimingQuantity.startDateTime): payload.appointmentTimingQuantity.startDateTime,
+        (mapping.appointmentTimingQuantity.endDateTime): payload.appointmentTimingQuantity.endDateTime
+    },
+    (mapping.fillerStatusCode): payload.fillerStatusCode
+}
+
 fun sch(data) = SCH
-replace ":placerAppointmentId:" with (data.placerAppointmentId default "")
-replace ":fillerAppointmentId:" with (data.fillerAppointmentId default "")
-replace ":occuranceNumber:" with (data.occuranceNumber default "")
-replace ":placerGroupNumber:" with (data.placerGroupNumber default "")
-replace ":scheduleId:" with (data.scheduleId default "")
-replace ":eventReason:" with (data.eventReason default "")
-replace ":appointmentReason:" with (data.appointmentReason default "")
-replace ":appointmentType:" with (data.appointmentType default "")
-replace ":appointmentDuration:" with (data.appointmentDuration default "")
-replace ":appointmentDurationUnits:" with (data.appointmentDurationUnits default "")
-replace ":appointmentTimingQuantity.startDateTime:" with (parseDate ((data.appointmentTimingQuantity.startDateTime default "")))
-replace ":fillerStatusCode:" with (data.fillerStatusCode default "")
+replace ":placerAppointmentId:" with (data."2" default "")
+replace ":fillerAppointmentId:" with (data."3" default "")
+replace ":appointmentType:" with (data."4" default "")
+replace ":appointmentDuration:" with (data."5" default "")
+replace ":appointmentDurationUnits:" with (data."6" default "")
+replace ":appointmentTimingQuantity.startDateTime:" with (parseDate ((data.appointmentTimingQuantity."7.1" default "")))
+replace ":appointmentTimingQuantity.endDateTime:" with (parseDate ((data.appointmentTimingQuantity."7.2" default "")))
+replace ":fillerStatusCode:" with (data."8" default "")
 ---
-sch(payload)
+sch(result)

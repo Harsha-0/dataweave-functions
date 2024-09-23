@@ -11,29 +11,57 @@ fun parseDate(date: String):Any = if(try(()-> date as LocalDateTime {format: "yy
 
 var PD1="PD1|:livingDependency:|:livingArrangement:|:patientPrimaryFacility:|:patientPrimaryCareProvider:|:studentIndicator:|:handicap:|:livingWillCode:|:organDonorCode:|:separateBill:|:duplicatePatient:|:publicityCode.id:^:publicityCode.description:^:publicityCode.code:|::protectionIndicator:|:protectionIndicatorEffectiveDate:|:placeOfWorship:|:advanceDirectiveCode:|::immunizationRegistryStatus:|:immunizationRegistryStatusEffectiveDate:|:publicityCodeEffectiveDate:|:militaryBranch:|:militaryRankGrade:|:militaryStatus:|"
 
+var result = {
+    (mapping.livingDependency): payload.livingDependency,
+    (mapping.livingArrangement): payload.livingArrangement,
+    (mapping.patientPrimaryFacility): payload.patientPrimaryFacility,
+    (mapping.patientPrimaryCareProvider): payload.patientPrimaryCareProvider,
+    (mapping.studentIndicator): payload.studentIndicator,
+    (mapping.handicap): payload.handicap,
+    (mapping.livingWillCode): payload.livingWillCode,
+    (mapping.organDonorCode): payload.organDonorCode,
+    (mapping.separateBill): payload.separateBill,
+    (mapping.duplicatePatient): payload.duplicatePatient,
+    publicityCode :{
+        (mapping.publicityCode.id): payload.publicityCode.id,
+        (mapping.publicityCode.description): payload.publicityCode.description,
+        (mapping.publicityCode.code): payload.publicityCode.code
+    },
+    (mapping.protectionIndicator): payload.protectionIndicator,
+    (mapping.protectionIndicatorEffectiveDate): payload.protectionIndicatorEffectiveDate,
+    (mapping.placeOfWorship): payload.placeOfWorship,
+    (mapping.advanceDirectiveCode): payload.advanceDirectiveCode,
+    (mapping.immunizationRegistryStatus): payload.immunizationRegistryStatus,
+    (mapping.immunizationRegistryStatusEffectiveDate): payload.immunizationRegistryStatusEffectiveDate,
+    (mapping.publicityCodeEffectiveDate): payload.publicityCodeEffectiveDate,
+    (mapping.militaryBranch): payload.militaryBranch,
+    (mapping.militaryRankGrade): payload.militaryRankGrade,
+    (mapping.militaryStatus): payload.militaryStatus
+}
+
 fun pd1(data) = PD1
-replace ":livingDependency:" with (data.livingDependency default "")
-replace ":livingArrangement:" with (data.livingArrangement default "")
-replace ":patientPrimaryFacility:" with (data.patientPrimaryFacility default "")
-replace ":patientPrimaryCareProvider:" with (data.patientPrimaryCareProvider default "")
-replace ":studentIndicator:" with (data.studentIndicator default "")
-replace ":handicap:" with (data.handicap default "")
-replace ":livingWillCode:" with (data.livingWillCode default "")
-replace ":organDonorCode:" with (data.organDonorCode default "")
-replace ":separateBill:" with (data.separateBill default "")
-replace ":duplicatePatient:" with (data.duplicatePatient default "")
-replace ":publicityCode.id:" with (data.publicityCode.id default "")
-replace ":publicityCode.description:" with (data.publicityCode.description default "")
-replace ":publicityCode.code:" with (data.publicityCode.code default "")
-replace "::protectionIndicator:" with (data.protectionIndicator default "")
-replace ":protectionIndicatorEffectiveDate:" with (parseDate(data.protectionIndicatorEffectiveDate) default "")
-replace ":placeOfWorship:" with (data.placeOfWorship default "")
-replace ":advanceDirectiveCode:" with (data.advanceDirectiveCode default "")
-replace "::immunizationRegistryStatus:" with (data.immunizationRegistryStatus default "")
-replace ":immunizationRegistryStatusEffectiveDate:" with (parseDate(data.immunizationRegistryStatusEffectiveDate) default "")
-replace ":publicityCodeEffectiveDate:" with (parseDate(data.publicityCodeEffectiveDate) default "")
-replace ":militaryBranch:" with (data.militaryBranch default "")
-replace ":militaryRankGrade:" with (data.militaryRankGrade default "")
-replace ":militaryStatus:" with (data.militaryStatus default "")
+replace ":livingDependency:" with (data."2" default "")
+replace ":livingArrangement:" with (data."3" default "")
+replace ":patientPrimaryFacility:" with (data."4" default "")
+replace ":patientPrimaryCareProvider:" with (data."5" default "")
+replace ":studentIndicator:" with (data."6" default "")
+replace ":handicap:" with (data."7" default "")
+replace ":livingWillCode:" with (data."8" default "")
+replace ":organDonorCode:" with (data."9" default "")
+replace ":separateBill:" with (data."10" default "")
+replace ":duplicatePatient:" with (data."11" default "")
+replace ":publicityCode.id:" with (data.publicityCode."12.1" default "")
+replace ":publicityCode.description:" with (data.publicityCode."12.2" default "")
+replace ":publicityCode.code:" with (data.publicityCode."12.3" default "")
+replace "::protectionIndicator:" with (data."13" default "")
+replace ":protectionIndicatorEffectiveDate:" with (parseDate(data."14") default "")
+replace ":placeOfWorship:" with (data."15" default "")
+replace ":advanceDirectiveCode:" with (data."16" default "")
+replace "::immunizationRegistryStatus:" with (data."17" default "")
+replace ":immunizationRegistryStatusEffectiveDate:" with (parseDate(data."18") default "")
+replace ":publicityCodeEffectiveDate:" with (parseDate(data."19") default "")
+replace ":militaryBranch:" with (data."20" default "")
+replace ":militaryRankGrade:" with (data."21" default "")
+replace ":militaryStatus:" with (data."22" default "")
 ---
-pd1(payload)
+pd1(result)

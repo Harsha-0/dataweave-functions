@@ -1,0 +1,32 @@
+{
+      "setId": "2",
+      "specimenId": {
+        "placerAssignedId": {
+          "entityIdentifier": "3.1.1",
+          "name": "3.1.2",
+          "universalId": "3.1.3",
+          "uidType": "3.1.4"
+        },
+        "fillerAssignedId": {
+          "entityIdentifier": "3.2.1",
+          "name": "3.2.2",
+          "universalId": "3.2.3",
+          "uidType": "3.2.4"
+        }
+      },
+      "specimenType": {
+        "identifierCode": "4.1",
+        "description": "4.2",
+        "codingSystem": "4.3"
+      },
+      "specimenCollectionMethod": {
+        "resultCode": "5.1",
+        "text": "5.2"
+      },
+      "specimenSourceSite": {
+        "resultCode": "6.1",
+        "text": "6.2"
+      },
+      "specimenCollectionDateTime": "7",
+      "specimenReceivedDateTime": "8"
+}

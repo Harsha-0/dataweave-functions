@@ -13,6 +13,55 @@ fun parseDate(date: String):Any = if(try(()-> date as LocalDateTime {format: "yy
 
 var ORC = "ORC|::orderControl:|:placerOrderNumber:^:placerOrderId:^:placerOrderCode:^:placerOrderIdentifier:|:fillerOrderNumber.entityIdentifier:^:fillerOrderNumber.name:^:fillerOrderNumber.universalId:^:fillerOrderNumber.uidType:|:placerGroupNumber:|::orderStatus:|:responseFlag:|:quantityTiming:|:parent:|:dateTimeOfTransaction:|:enteredBy.id:^:enteredBy.firstName:^:enteredBy.lastName:|:verifiedBy:|:provider.id:^:provider.firstName:^:provider.lastName:|:enterersLocation:|:callBackPhoneNumber:|:orderEffectiveDateTime:|:orderControlCodeReason:|:enteringOrganization:|:enteringDevice:|:actionBy:|:advancedBeneficiaryNoticeCode:|:orderingFacilityName.name:^:orderingFacilityName.codeType:^:orderingFacilityName.code:^:orderingFacilityName.uidType:^:orderingFacilityName.universalId:|:orderingFacilityAddressArray:|:orderingFacilityPhoneNumber:|:orderingProviderAddress:|:orderStatusModifier:|:advancedBeneficiaryNoticeOverrideReason:|:fillersExpectedAvailabilityDateTime:|:confidentialityCode:|:orderType:|:entererAuthorizationMode:|:universalServiceidentifier:|"
 
+var result = {
+    (mapping.orderControl): payload.orderControl,
+    placerOrderNumber: {
+        (mapping.placerOrderNumber.number): payload.placerOrderNumber.number,
+        (mapping.placerOrderNumber.id): payload.placerOrderNumber.id,
+        (mapping.placerOrderNumber.code): payload.placerOrderNumber.code,
+        (mapping.placerOrderNumber.identifier): payload.placerOrderNumber.identifier
+    },
+    fillerOrderNumber: {
+        (mapping.fillerOrderNumber.entityIdentifier): payload.fillerOrderNumber.entityIdentifier,
+        (mapping.fillerOrderNumber.name): payload.fillerOrderNumber.name,
+        (mapping.fillerOrderNumber.universalId): payload.fillerOrderNumber.universalId,
+        (mapping.fillerOrderNumber.uidType): payload.fillerOrderNumber.uidType
+    },
+    (mapping.placerGroupNumber): payload.placerGroupNumber,
+    (mapping.orderStatus): payload.orderStatus,
+    (mapping.responseFlag): payload.responseFlag,
+    (mapping.quantityTiming): payload.quantityTiming,
+    (mapping.parent): payload.parent,
+    (mapping.dateTimeOfTransaction): payload.dateTimeOfTransaction,
+    (mapping.verifiedBy): payload.verifiedBy,
+    provider: {
+        (mapping.provider.id): payload.provider.id,
+        (mapping.provider.firstName): payload.provider.firstName,
+        (mapping.provider.lastName): payload.provider.lastName
+    },
+    (mapping.enterersLocation): payload.enterersLocation,
+    (mapping.orderEffectiveDateTime): payload.orderEffectiveDateTime,
+    (mapping.orderControlCodeReason): payload.orderControlCodeReason,
+    (mapping.enteringOrganization): payload.enteringOrganization,
+    (mapping.actionBy): payload.actionBy,
+    (mapping.advancedBeneficiaryNoticeCode): payload.advancedBeneficiaryNoticeCode,
+    orderingFacilityName: {
+        (mapping.orderingFacilityName.name): payload.orderingFacilityName.name,
+        (mapping.orderingFacilityName.codeType): payload.orderingFacilityName.codeType,
+        (mapping.orderingFacilityName.code): payload.orderingFacilityName.code,
+        (mapping.orderingFacilityName.uidType): payload.orderingFacilityName.uidType,
+        (mapping.orderingFacilityName.universalId): payload.orderingFacilityName.universalId
+    },
+    (mapping.orderingFacilityPhoneNumber): payload.orderingFacilityPhoneNumber,
+    (mapping.orderingProviderAddress): payload.orderingProviderAddress,
+    (mapping.orderStatusModifier): payload.orderStatusModifier,
+    (mapping.fillersExpectedAvailabilityDateTime): payload.fillersExpectedAvailabilityDateTime,
+    (mapping.confidentialityCode): payload.confidentialityCode,
+    (mapping.orderType): payload.orderType,
+    (mapping.entererAuthorizationMode): payload.entererAuthorizationMode,
+    (mapping.universalServiceidentifier): payload.universalServiceidentifier
+}
+
 fun orc(data) = ORC
 replace "::orderControl:" with (data.orderControl default "")
 replace ":placerOrderNumber:" with (data.placerOrderNumber.number default "")
@@ -37,7 +86,7 @@ replace ":provider.id:" with (data.provider.id default "")
 replace ":provider.firstName:" with (data.provider.firstName default "")
 replace ":provider.lastName:" with (data.provider.lastName default "")
 replace ":enterersLocation:" with (data.enterersLocation default "")
-replace ":callBackPhoneNumber:" with telephone((data.callBackPhoneNumber default []))
+replace ":callBackPhoneNumber:" with telephone((payload.callBackPhoneNumber default []))
 replace ":orderEffectiveDateTime:" with (parseDate(data.orderEffectiveDateTime default ""))
 replace ":orderControlCodeReason:" with (data.orderControlCodeReason default "")
 replace ":enteringOrganization:" with (data.enteringOrganization default "")
@@ -49,7 +98,7 @@ replace ":orderingFacilityName.codeType:" with  (data.orderingFacilityName.codeT
 replace ":orderingFacilityName.code:" with  (data.orderingFacilityName.code default "")
 replace ":orderingFacilityName.uidType:" with  (data.orderingFacilityName.uidType default "")
 replace ":orderingFacilityName.universalId:" with  (data.orderingFacilityName.universalId default "")
-replace ":orderingFacilityAddressArray:" with address((data.orderingFacilityAddress default []))
+replace ":orderingFacilityAddressArray:" with address((payload.orderingFacilityAddress default []))
 replace ":orderingFacilityPhoneNumber:" with (data.orderingFacilityPhoneNumber default "")
 replace ":orderingProviderAddress:" with (data.orderingProviderAddress default "")
 replace ":orderStatusModifier:" with (data.orderStatusModifier default "")
@@ -61,4 +110,4 @@ replace ":entererAuthorizationMode:" with (data.entererAuthorizationMode default
 replace ":universalServiceidentifier:" with (data.universalServiceidentifier default "")
 
 ---
-orc(payload)
+orc(result)

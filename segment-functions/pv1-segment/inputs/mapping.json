@@ -1,0 +1,8 @@
+{
+    "setId": "2",
+    "patientClass": "3",
+    "assignedPatientLocation": {
+      "code": "4.1",
+      "description": "4.2"
+    }
+}

@@ -1,7 +1,7 @@
 {
   "sendingApp": {
-    "name": "3.1",
-    "id": "3.2",
+    "name": "3.2",
+    "id": "3.1",
     "code": "3.3"
   },
   "sendingFacility": {
@@ -19,8 +19,8 @@
     "id": "6.2",
     "code": "6.3"
   },
-  "dateTime": "7",
-  "security": "8",
+  "dateTime": "8",
+  "security": "7",
   "messageType": {
     "type": "9.1",
     "code": "9.2",

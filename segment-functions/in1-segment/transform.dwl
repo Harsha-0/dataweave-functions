@@ -1,18 +1,21 @@
 %dw 2.0
+output application/json
 import * from dw::core::Strings
-import * from dw::core::Arrays
 import try from dw::Runtime
-
-fun address(add:Array):Any = (add reduce ((item, acc = "") -> (acc) ++ "~" ++ ((item.line1 default "") ++ "^" ++ (item.line2 default "") ++ "^" ++ (item.city default "")++ "^" ++ (item.state default "") ++ "^" ++ (item.postalCode default "")++ "^" ++ (item.append default "BDL")) ))substringAfter "~"
-
-fun telephone(contact:Array):Any =  (contact reduce ((item, acc = "") -> acc ++"~"++(item.anyText  default "") ++ "^"++(item.code  default "") ++ "^" ++ (item."type"  default "") ++ "^" ++(item.emailAddress default "") ++"^"++ (item.text  default "") ++"^"++ (item.number[0 to 2]  default "")++ "^" ++ (item.number[3 to -1]  default "") )) substringAfter "~"
 
 fun parseDate(date: String):Any = if(try(()-> date as LocalDateTime {format: "yyyy-MM-dd'T'HH:mm:ss"} as String {format: "yyyyMMddHHmmss"}).success) (date as LocalDateTime {format: "yyyy-MM-dd'T'HH:mm:ss"}) as String {format: "yyyyMMddHHmmss"} else if(try(()-> date as Date {format: "yyyy-MM-dd"} as String {format: "yyyyMMdd"}).success) (date as Date {format: "yyyy-MM-dd"} as String {format: "yyyyMMdd"}) else date
 
+fun segmentBuild(data) = data match  {
+   case is Object -> valuesOf(data) joinBy "^"
+   case is Array -> (data reduce ((item, acc = "") -> (acc) ++ "~" ++ segmentBuild(item) ))substringAfter "~"
+   case is String -> data
+   else -> ""
+}
 
-var IN1="IN1|:setId:|:insurancePlanId:|:insuranceCompanyId:|:insuranceCompanyName:|:insuranceCompanyAddress:|:insuranceCoContactPerson:|:insuranceCoPhoneNumber:|:groupNumber:|:groupName:|:insuredsGroupEmpId:|:insuredsGroupEmpName:|:planEffectiveDate:|:planExpirationDate:|:authorizationInformation:|:planType:|:nameOfInsured:|:insuredsRelationshipToPatient:|:insuredDateOfBirth:|:insuredsAddress:|:assignmentOfBenefits:|:coordinationOfBenefits:|:coordOfBenPriority:|:noticeOfAdmissionFlag:|:noticeOfAdmissionDate:|:reportOfEligibilityFlag:|:reportOfEligibilityDate:|:releaseInformationCode:|:preAdmitCert:|:verificationDateTime:|:verificationBy:|:typeOfAgreementCode:|:billingStatus:|:lifetimeReserveDays:|:delayBeforeLRDay:|:companyPlanCode:|:policyNumber:|:policyDeductible:|:policyLimitAmount:|:roomRateSemiPrivate:|:roomRatePrivate:|:insuredsEmploymentStatus:|:insuredsAdministrativeSex:|:insuredsEmployersAddress:|:verificationStatus:|:priorInsurancePlanID:|:coverageType:|:handicap:|:insuredsIDNumber:|:signatureCode:|:signatureCodeDate:|:insuredsBirthPlace:|:vipIndicator:|"
+fun hl7(header,details) = header ++ "|" ++ ((valuesOf(details)) map (segmentBuild ($)) joinBy "|")
 
-var result ={
+var result = {
+    "IN1": {
     (mapping.setId): payload.setId,
     (mapping.insurancePlanId): payload.insurancePlanId,
     (mapping.insuranceCompanyId): payload.insuranceCompanyId,
@@ -24,24 +27,24 @@ var result ={
     (mapping.groupName): payload.groupName,
     (mapping.insuredsGroupEmpId): payload.insuredsGroupEmpId,
     (mapping.insuredsGroupEmpNam): payload.insuredsGroupEmpNam,
-    (mapping.planEffectiveDate): payload.planEffectiveDate,
-    (mapping.planExpirationDate): payload.planExpirationDate,
+    (mapping.planEffectiveDate): parseDate(payload.planEffectiveDate),
+    (mapping.planExpirationDate): parseDate(payload.planExpirationDate),
     (mapping.authorizationInformation): payload.authorizationInformation,
     (mapping.planType): payload.planType,
     (mapping.nameOfInsured): payload.nameOfInsured,
     (mapping.insuredsRelationshipToPatient): payload.insuredsRelationshipToPatient,
-    (mapping.insuredDateOfBirth): payload.insuredDateOfBirth,
+    (mapping.insuredDateOfBirth): parseDate(payload.insuredDateOfBirth),
     (mapping.insuredsAddress): payload.insuredsAddress,
     (mapping.assignmentOfBenefits): payload.assignmentOfBenefits,
     (mapping.coordinationOfBenefits): payload.coordinationOfBenefits,
     (mapping.coordOfBenPriority): payload.coordOfBenPriority,
     (mapping.noticeOfAdmissionFlag): payload.noticeOfAdmissionFlag,
-    (mapping.noticeOfAdmissionDate): payload.noticeOfAdmissionDate,
+    (mapping.noticeOfAdmissionDate): parseDate(payload.noticeOfAdmissionDate),
     (mapping.reportOfEligibilityFlag): payload.reportOfEligibilityFlag,
-    (mapping.reportOfEligibilityDate): payload.reportOfEligibilityDate,
+    (mapping.reportOfEligibilityDate): parseDate(payload.reportOfEligibilityDate),
     (mapping.releaseInformationCode): payload.releaseInformationCode,
     (mapping.preAdmitCert): payload.preAdmitCert,
-    (mapping.verificationDateTime): payload.verificationDateTime,
+    (mapping.verificationDateTime): parseDate(payload.verificationDateTime),
     (mapping.verificationBy): payload.verificationBy,
     (mapping.typeOfAgreementCode): payload.typeOfAgreementCode,
     (mapping.billingStatus): payload.billingStatus,
@@ -63,66 +66,66 @@ var result ={
     (mapping.handicap): payload.handicap,
     (mapping.insuredsIDNumber): payload.insuredsIDNumber,
     (mapping.signatureCode): payload.signatureCode,
-    (mapping.signatureCodeDate): payload.signatureCodeDate,
+    (mapping.signatureCodeDate): parseDate(payload.signatureCodeDate),
     (mapping.insuredsBirthPlace): payload.insuredsBirthPlace,
     (mapping.vipIndicator): payload.vipIndicator
 }
+}
 
-
-
-fun in1(data) =IN1 
-replace ":setId:" with (data."2" default "")
-replace ":insurancePlanId:" with (data."3" default "")
-replace ":insuranceCompanyId:" with (data."4" default "")
-replace ":insuranceCompanyName:" with (data."5" default "")
-replace ":insuranceCompanyAddress:" with (data."6" default "")
-replace ":insuranceCoContactPerson:" with (data."7" default "")
-replace ":insuranceCoPhoneNumber:" with (data."8" default "")
-replace ":groupNumber:" with (data."9" default "")
-replace ":groupName:" with (data."10" default "")
-replace ":insuredsGroupEmpId:" with (data."11" default "")
-replace ":insuredsGroupEmpName:" with (data."12" default "")
-replace ":planEffectiveDate:" with (parseDate(data."13") default "")
-replace ":planExpirationDate:" with (parseDate(data."14") default "")
-replace ":authorizationInformation:" with (data."15" default "")
-replace ":planType:" with (data."16"  default "")
-replace ":nameOfInsured:" with (data."17" default "")
-replace ":insuredsRelationshipToPatient:" with (data."18" default "")
-replace ":insuredDateOfBirth:" with (data."19" default "")
-replace ":insuredsAddress:" with (data."20" default "")
-replace ":assignmentOfBenefits:" with (data."21" default "")
-replace ":coordinationOfBenefits:" with (data."22" default "")
-replace ":coordOfBenPriority:" with (data."23" default "")
-replace ":noticeOfAdmissionFlag:" with (data."24" default "")
-replace ":noticeOfAdmissionDate:" with (parseDate(data."25") default "")
-replace ":reportOfEligibilityFlag:" with (data."26" default "")
-replace ":reportOfEligibilityDate:" with (parseDate(data."27") default "")
-replace ":releaseInformationCode:" with (data."28" default "")
-replace ":preAdmitCert:" with (data."29" default "")
-replace ":verificationDateTime:" with (parseDate(data."30") default "")
-replace ":verificationBy:" with (data."31" default "")
-replace ":typeOfAgreementCode:" with (data."32" default "")
-replace ":billingStatus:" with (data."33" default "")
-replace ":lifetimeReserveDays:" with (data."34" default "")
-replace ":delayBeforeLRDay:" with (data."35" default "")
-replace ":companyPlanCode:" with (data."36" default "")
-replace ":policyNumber:" with (data."37" default "")
-replace ":policyDeductible:" with (data."38" default "")
-replace ":policyLimitAmount:" with (data."39" default "")
-replace ":policyLimitDays:" with (data."40" default "")
-replace ":roomRateSemiPrivate:" with (data."41" default "")
-replace ":roomRatePrivate:" with (data."42" default "")
-replace ":insuredsEmploymentStatus:" with (data."43" default "")
-replace ":insuredsAdministrativeSex:" with (data."44" default "")
-replace ":insuredsEmployersAddress:" with (data."45" default "")
-replace ":verificationStatus:" with (data."46" default "")
-replace ":priorInsurancePlanID:" with (data."47" default "")
-replace ":coverageType:" with (data."48" default "")
-replace ":handicap:" with (data."49" default "")
-replace ":insuredsIDNumber:" with (data."50" default "")
-replace ":signatureCode:" with (data."51" default "")
-replace ":signatureCodeDate:" with (data."52" default "")
-replace ":insuredsBirthPlace:" with (data."53" default "")
-replace ":vipIndicator:" with (data."54" default "")
+var inputData = {
+  "2": result.IN1."2" default "",
+  "3": result.IN1."3" default "",
+  "4": result.IN1."4" default "",
+  "5": result.IN1."5" default "",
+  "6": result.IN1."6" default "",
+  "7": result.IN1."7" default "",
+  "8": result.IN1."8" default "",
+  "9": result.IN1."9" default "",
+  "10": result.IN1."10" default "",
+  "11": result.IN1."11" default "",
+  "12": result.IN1."12" default "",
+  "13": result.IN1."13" default "",
+  "14": result.IN1."14" default "",
+  "15": result.IN1."15" default "",
+  "16": result.IN1."16" default "",
+  "17": result.IN1."17" default "",
+  "18": result.IN1."18" default "",
+  "19": result.IN1."19" default "",
+  "20": result.IN1."20" default "",
+  "21": result.IN1."21" default "",
+  "22": result.IN1."22" default "",
+  "23": result.IN1."23" default "",
+  "24": result.IN1."24" default "",
+  "25": result.IN1."25" default "",
+  "26": result.IN1."26" default "",
+  "27": result.IN1."27" default "",
+  "28": result.IN1."28" default "",
+  "29": result.IN1."29" default "",
+  "30": result.IN1."30" default "",
+  "31": result.IN1."31" default "",
+  "32": result.IN1."32" default "",
+  "33": result.IN1."33" default "",
+  "34": result.IN1."34" default "",
+  "35": result.IN1."35" default "",
+  "36": result.IN1."36" default "",
+  "37": result.IN1."37" default "",
+  "38": result.IN1."38" default "",
+  "39": result.IN1."39" default "",
+  "40": result.IN1."40" default "",
+  "41": result.IN1."41" default "",
+  "42": result.IN1."42" default "",
+  "43": result.IN1."43" default "",
+  "44": result.IN1."44" default "",
+  "45": result.IN1."45" default "",
+  "46": result.IN1."46" default "",
+  "47": result.IN1."47" default "",
+  "48": result.IN1."48" default "",
+  "49": result.IN1."49" default "",
+  "50": result.IN1."50" default "",
+  "51": result.IN1."51" default "",
+  "52": result.IN1."52" default "",
+  "53": result.IN1."53" default "",
+  "54": result.IN1."54" default ""
+}
 ---
-in1(result)
+hl7("IN1",inputData)

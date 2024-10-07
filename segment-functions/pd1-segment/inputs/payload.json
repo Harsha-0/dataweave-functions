@@ -1,27 +1,27 @@
 {
-    "livingDependency": "",
-    "livingArrangement": "",
-    "patientPrimaryFacility": "",
-    "patientPrimaryCareProvider": "",
-    "studentIndicator": "",
-    "handicap": "",
-    "livingWillCode": "",
-    "organDonorCode": "",
-    "separateBill": "",
-    "duplicatePatient": "",
-    "publicityCode": {
-      "id": "02",
-      "description": "Reminder/Recall - any method",
-      "code": "HL70215"
-    },
-    "protectionIndicator": "Y",
-    "protectionIndicatorEffectiveDate": "2016-08-25",
-    "placeOfWorship": "",
-    "advanceDirectiveCode": "",
-    "immunizationRegistryStatus": "A",
-    "immunizationRegistryStatusEffectiveDate": "",
-    "publicityCodeEffectiveDate": "",
-    "militaryBranch": "",
-    "militaryRankGrade": "",
-    "militaryStatus": ""
-  }
+  "livingDependency": "",
+  "livingArrangement": "",
+  "patientPrimaryFacility": "",
+  "patientPrimaryCareProvider": "",
+  "studentIndicator": "",
+  "handicap": "",
+  "livingWillCode": "",
+  "organDonorCode": "",
+  "separateBill": "",
+  "duplicatePatient": "",
+  "publicityCode": {
+    "id": "02",
+    "description": "Reminder/Recall - any method",
+    "code": "HL70215"
+  },
+  "protectionIndicator": "Y",
+  "protectionIndicatorEffectiveDate": "2016-08-25",
+  "placeOfWorship": "",
+  "advanceDirectiveCode": "",
+  "immunizationRegistryStatus": "A",
+  "immunizationRegistryStatusEffectiveDate": "",
+  "publicityCodeEffectiveDate": "",
+  "militaryBranch": "",
+  "militaryRankGrade": "",
+  "militaryStatus": ""
+}

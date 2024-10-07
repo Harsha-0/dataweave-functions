@@ -1,63 +1,69 @@
 %dw 2.0
+output application/json
 import * from dw::core::Strings
-import * from dw::core::Arrays
 import try from dw::Runtime
 
-fun address(add:Array):Any = (add reduce ((item, acc = "") -> (acc) ++ "~" ++ ((item.line1 default "") ++ "^" ++ (item.line2 default "") ++ "^" ++ (item.city default "")++ "^" ++ (item.state default "") ++ "^" ++ (item.postalCode default "")++ "^" ++ (item.append default "BDL")) ))substringAfter "~"
+// Function to parse date fields 
+fun parseDate(date: String): Any = if (try(() -> date as LocalDateTime {format: "yyyy-MM-dd'T'HH:mm:ss"}).success) (date as LocalDateTime {format: "yyyy-MM-dd'T'HH:mm:ss"}) as String {format: "yyyyMMddHHmmss"}else if (try(() -> date as Date {format: "yyyy-MM-dd"}).success)(date as Date {format: "yyyy-MM-dd"}) as String {format: "yyyyMMdd"}else date
 
-fun telephone(contact:Array):Any =  (contact reduce ((item, acc = "") -> acc ++"~"++(item.anyText  default "") ++ "^"++(item.code  default "") ++ "^" ++ (item."type"  default "") ++ "^" ++(item.emailAddress default "") ++"^"++ (item.text  default "") ++"^"++ (item.number[0 to 2]  default "")++ "^" ++ (item.number[3 to -1]  default "") )) substringAfter "~"
-
-fun parseDate(date: String):Any = if(try(()-> date as LocalDateTime {format: "yyyy-MM-dd'T'HH:mm:ss"} as String {format: "yyyyMMddHHmmss"}).success) (date as LocalDateTime {format: "yyyy-MM-dd'T'HH:mm:ss"}) as String {format: "yyyyMMddHHmmss"} else if(try(()-> date as Date {format: "yyyy-MM-dd"} as String {format: "yyyyMMdd"}).success) (date as Date {format: "yyyy-MM-dd"} as String {format: "yyyyMMdd"}) else date
-var QPD = "QPD|:messageQueryNameCode:^:messageQueryNameName:^:messageQueryNameId:|:queryTag:|:idValue:^^^^:identifierCode:|:lastName:^:firstName:^:middleName:^^^^L|:motherMaidenNameLastName:^:motherMaidenNameMiddleName:^:motherMaidenNameFirstName:^^^^^M|:dateOfBirth:|:gender:|:addressArray:|:telephoneArray:|:multipleBirthIndicator:|:birthOrder:|:clientLastUpdatedDate:|:clientLastUpdateFacility:|"
-
-var result = {
-  messageQueryName: {
-      (mapping.messageQueryName.code): payload.messageQueryName.code,
-      (mapping.messageQueryName.name): payload.messageQueryName.name,
-      (mapping.messageQueryName.id): payload.messageQueryName.id
-  },
-  (mapping.queryTag): payload.queryTag,
-  id: {
-    (mapping.id.value): payload.id.value
-  },
-  (mapping.identifierCode): payload.identifierCode,
-  (mapping.lastName): payload.lastName,
-  (mapping.firstName): payload.firstName,
-  (mapping.middleName): payload.middleName,
-  motherMaidenName:{
-      (mapping.motherMaidenName.lastName): payload.motherMaidenName.lastName,
-      (mapping.motherMaidenName.firstName): payload.motherMaidenName.firstName,
-      (mapping.motherMaidenName.middleName): payload.motherMaidenName.middleName
-      },
-    (mapping.dateOfBirth): payload.dateOfBirth,
-    (mapping.gender): payload.gender,
-    (mapping.multipleBirthIndicator): payload.multipleBirthIndicator,
-    (mapping.birthOrder): payload.birthOrder,
-    (mapping.clientLastUpdatedDate): payload.clientLastUpdatedDate,
-    (mapping.clientLastUpdateFacility): payload.clientLastUpdateFacility
+// Function to remap object values based on a different mapping object
+fun reMap(obj1, obj2) = obj2 match {
+    case is Object -> 
+      (obj1 mapObject ((value, key, index) -> {((value)substringAfter ".") : obj2[(key)]})) ++ {reMapId: ((obj1[0]) substringBefore ".")}
+    case is String -> obj2 
+    case is Array -> 
+      obj2 map ((item, index) -> (obj1[0] mapObject ((value, key, index) -> {((value)substringAfter ".") : item[(key)]})) ++ {reMapId: ((obj1[0][0]) substringBefore ".")})
+    else -> "" 
 }
 
-fun qpd(data)= QPD
-replace ":messageQueryNameCode:" with (data.messageQueryName."2.1" default "")
-replace ":messageQueryNameName:" with (data.messageQueryName."2.2" default "")
-replace ":messageQueryNameId:" with (data.messageQueryName."2.3" default "")
-replace ":queryTag:" with (data."3" default "")
-replace ":idValue:" with (data.id."4.1" default "")
-replace  ":identifierCode:" with (data."4.2" default "")
-replace ":lastName:" with (data."5.1" default "")
-replace ":firstName:" with (data."5.2" default "")
-replace  ":middleName:" with (data."5.3" default "")
-replace ":motherMaidenNameLastName:" with (data.motherMaidenName."5.1" default "")
-replace  ":motherMaidenNameFirstName:" with (data.motherMaidenName."5.2" default "")
-replace ":motherMaidenNameMiddleName:" with (data.motherMaidenName."5.3" default "")
-replace ":dateOfBirth:" with (parseDate(data."7")default "")
-replace ":gender:" with (data."8" default "")
-replace ":addressArray:" with (address(payload.address) default "")
-replace  ":multipleBirthIndicator:" with (data."10" default "")
-replace ":birthOrder:" with (data."11" default "")
-replace ":clientLastUpdatedDate:" with (parseDate(data."12") default "")
-replace ":clientLastUpdateFacility:" with (data."13" default "")
-replace ":telephoneArray:" with (telephone( payload.telecom) default "")
----
-qpd(result)
+// Function to find the maximum number of fields in the mapping JSON
+fun maxFields(mappingJson) = 
+  max((flatten((mappingJson mapObject ((value, key, index) -> 
+    "values" : value match {
+      case is Object -> valuesOf(value)
+      case is Array -> value map maxFields($)
+      case is String -> value
+      else -> 0
+    }
+  ))..)) map $ as Number)
 
+// Function to process input data
+fun inputData(obj) = ((1 to 10) map ((item, index) -> obj mapObject ((value, key, index) -> value match {
+        case is Object -> 
+          (value.reMapId): value - ("reMapId")
+        case is Array -> 
+          (value[0].reMapId): value map $ - ("reMapId")
+        else -> (mapping[key]): value 
+    })))[0] 
+
+// Function to construct a segment for HL7 message format 
+fun segmentBuild(data) = 
+  data match {
+    case is Object -> 
+      (1 to max(keysOf(data) map $ as Number)) map ((item) -> data[item as String] default "") joinBy "^"
+    case is Array -> 
+      (data reduce ((item, acc = "") -> (acc) ++ "~" ++ segmentBuild(item))) substringAfter "~" 
+    case is String -> data 
+    else -> "" 
+  }
+
+// Function to generate an HL7 message 
+fun hl7(header, details) = header ++ "|" ++ ((valuesOf(restructure))[2 to -1] map (segmentBuild($)) joinBy "|")
+
+
+// Determine the maximum number of fields based on the `mapping` input
+var maxFieldValue = maxFields(mapping)
+
+// Main result map where the MSH object is generated by applying reMap to each element of mapping and payload
+var result = {
+  MSH: keysOf(mapping) 
+    map ({($): reMap(mapping[($)], payload[($)]) }) 
+    reduce ((item, acc = {}) -> acc ++ item)
+}
+
+// Build the restructure map by processing the result.MSH and filtering based on maxFieldValue
+
+var restructure = ((0 to maxFieldValue) map (inputData(result.MSH) filterObject ((value, key, index) -> key ~= $)))map (($$ + 1): valuesOf($)[0] default "") reduce ((item, acc = {}) -> acc ++ item)
+
+---
+hl7("QPD", restructure) 

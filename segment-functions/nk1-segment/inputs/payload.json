@@ -1,68 +1,68 @@
 {
-      "setId": "1",
-      "name": {
-        "firstName": "Fisher",
-        "lastName": "Ron"
-      },
-      "relationship": {
-        "code": "FTH",
-        "name": "Father",
-        "id": "HL70063"
-      },
-      "address": [
-        {
-          "line1": "123",
-          "line2": "MAIN STREET",
-          "city": "CHEYENNE",
-          "state": "WY",
-          "postalCode": "82002",
-          "append": ""
-        }
-      ],
-      "phoneNumber": [
-        {
-          "code": "NET",
-          "number": "",
-          "type": "PHONE",
-          "emailAddress": "4065551234",
-          "countryCode": "",
-          "extension": "",
-          "text": "",
-          "anyText": ""
-        }
-      ],
-      "businessPhoneNumber": "",
-      "contactRole": "",
-      "startDate": "",
-      "endDate": "",
-      "nextOfKinAssociatedPartiesJobTitle": "",
-      "nextOfKinAssociatedPartiesJobCodeClass": "",
-      "nextOfKinAssociatedPartiesEmployeeNumber": "",
-      "nextOfKinAssociatedPartysIdentifiers": "",
-      "nextOfKinBirthPlace": "",
-      "organizationName": "",
-      "maritalStatus": "",
-      "administrativeSex": "",
-      "dateTimeOfBirth": "",
-      "livingDependency": "",
-      "ambulatoryStatus": "",
-      "citizenship": "",
-      "primaryLan": "",
-      "livingArrangement": "",
-      "publicityCode": "",
-      "protectionIndicator": "",
-      "studentIndicator": "",
-      "religion": "",
-      "mothersMaidenName": "",
-      "nationality": "",
-      "ethnicGroup": "",
-      "contactReason": "",
-      "contactPersonsName": "",
-      "contactPersonsTelephoneNumber": "",
-      "contactPersonsAddress": "",
-      "jobStatus": "",
-      "race": "",
-      "handicap": "",
-      "contactPersonSocialSecurityNumber": "",
-      "vipIndicator": ""
-  }
+  "setId": "1",
+  "name": {
+    "firstName": "Fisher",
+    "lastName": "Ron"
+  },
+  "relationship": {
+    "code": "FTH",
+    "name": "Father",
+    "id": "HL70063"
+  },
+  "address": [
+    {
+      "line1": "123",
+      "line2": "MAIN STREET",
+      "city": "CHEYENNE",
+      "state": "WY",
+      "postalCode": "82002",
+      "append": ""
+    }
+  ],
+  "phoneNumber": [
+    {
+      "code": "NET",
+      "number": "",
+      "type": "PHONE",
+      "emailAddress": "4065551234",
+      "countryCode": "",
+      "extension": "",
+      "text": "",
+      "anyText": ""
+    }
+  ],
+  "businessPhoneNumber": "",
+  "contactRole": "",
+  "startDate": "",
+  "endDate": "",
+  "nextOfKinAssociatedPartiesJobTitle": "",
+  "nextOfKinAssociatedPartiesJobCodeClass": "",
+  "nextOfKinAssociatedPartiesEmployeeNumber": "",
+  "nextOfKinAssociatedPartysIdentifiers": "",
+  "nextOfKinBirthPlace": "",
+  "organizationName": "",
+  "maritalStatus": "",
+  "administrativeSex": "",
+  "dateTimeOfBirth": "",
+  "livingDependency": "",
+  "ambulatoryStatus": "",
+  "citizenship": "",
+  "primaryLan": "",
+  "livingArrangement": "",
+  "publicityCode": "",
+  "protectionIndicator": "",
+  "studentIndicator": "",
+  "religion": "",
+  "mothersMaidenName": "",
+  "nationality": "",
+  "ethnicGroup": "",
+  "contactReason": "",
+  "contactPersonsName": "",
+  "contactPersonsTelephoneNumber": "",
+  "contactPersonsAddress": "",
+  "jobStatus": "",
+  "race": "",
+  "handicap": "",
+  "contactPersonSocialSecurityNumber": "",
+  "vipIndicator": ""
+}

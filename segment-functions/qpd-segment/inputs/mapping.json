@@ -1,26 +1,61 @@
 {
-    "messageQueryName": {
-      "code": "2.1",
-      "name": "2.2",
-      "id": "2.3"
+  "messageQueryName": {
+    "code": "2.1",
+    "name": "2.2",
+    "id": "2.3"
+  },
+  "queryTag": "3",
+  "id": {
+    "value": "4.1",
+  "identifierCode": "4.5"
+  },
+  "patientName":{
+  "lastName": "5.1",
+  "firstName": "5.2",
+  "middleName": "5.3",
+  "append": "5.7"
+},                  
+  "motherMaidenName": {
+    "lastName": "6.1",
+    "firstName": "6.2",
+    "middleName": "6.3",
+     "append": "6.7"
+  },
+  "dateOfBirth": "7",
+  "gender": "8",
+  "address": [
+    {
+      "line1": "9.1",
+      "line2": "9.2",
+      "city": "9.3",
+      "state": "9.4",
+      "postalCode": "9.5"
+    }
+  ],
+  "telecom": [
+    {
+      "code": "10.1",
+      "number": "10.2",
+      "type": "10.3",
+      "emailAddress": "10.4",
+      "countryCode": "10.5",
+      "extension": "10.6",
+      "text": "10.7",
+      "anyText": "10.8"
     },
-    "queryTag": "3",
-    "id": {
-      "value": "4.1"
-    },
-    "identifierCode": "4.2",
-    "lastName": "5.1",
-    "firstName": "5.2",
-    "middleName": "5.3",
-    "motherMaidenName": {
-      "lastName": "6.1",
-      "firstName": "6.2",
-      "middleName": "6.3"
-    },
-    "dateOfBirth": "7",
-    "gender": "8",
-    "multipleBirthIndicator": "10",
-    "birthOrder": "11",
-    "clientLastUpdatedDate": "12",
-    "clientLastUpdateFacility": "13"
+    {
+      "code": "10.1",
+      "number": "10.2",
+      "type": "10.3",
+      "emailAddress": "10.4",
+      "countryCode": "10.5",
+      "extension": "10.6",
+      "text": "10.7",
+      "anyText": "10.8"
+    }
+  ],
+  "multipleBirthIndicator": "11",
+  "birthOrder": "12",
+  "clientLastUpdatedDate": "13",
+  "clientLastUpdateFacility": "14"
 }

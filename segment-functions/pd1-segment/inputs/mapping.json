@@ -1,28 +1,27 @@
 {
-    "livingDependency": "2",
-    "livingArrangement": "3",
-    "patientPrimaryFacility": "4",
-    "patientPrimaryCareProvider": "5",
-    "studentIndicator": "6",
-    "handicap": "7",
-    "livingWillCode": "8",
-    "organDonorCode": "9",
-    "separateBill": "10",
-    "duplicatePatient": "11",
-    "publicityCode": {
-      "id": "12.1",
-      "description": "12.2",
-      "code": "12.3"
-    },
-    "protectionIndicator": "13",
-    "protectionIndicatorEffectiveDate": "14",
-    "placeOfWorship": "15",
-    "advanceDirectiveCode": "16",
-    "immunizationRegistryStatus": "17",
-    "immunizationRegistryStatusEffectiveDate": "18",
-    "publicityCodeEffectiveDate": "19",
-    "militaryBranch": "20",
-    "militaryRankGrade": "21",
-    "militaryStatus": "22"
-  }
-  
+  "livingDependency": "2",
+  "livingArrangement": "3",
+  "patientPrimaryFacility": "4",
+  "patientPrimaryCareProvider": "5",
+  "studentIndicator": "6",
+  "handicap": "7",
+  "livingWillCode": "8",
+  "organDonorCode": "9",
+  "separateBill": "10",
+  "duplicatePatient": "11",
+  "publicityCode": {
+    "id": "12.1",
+    "description": "12.2",
+    "code": "12.3"
+  },
+  "protectionIndicator": "13",
+  "protectionIndicatorEffectiveDate": "14",
+  "placeOfWorship": "15",
+  "advanceDirectiveCode": "16",
+  "immunizationRegistryStatus": "17",
+  "immunizationRegistryStatusEffectiveDate": "18",
+  "publicityCodeEffectiveDate": "19",
+  "militaryBranch": "20",
+  "militaryRankGrade": "21",
+  "militaryStatus": "22"
+}

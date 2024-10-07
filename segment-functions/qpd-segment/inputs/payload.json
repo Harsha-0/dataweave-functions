@@ -1,57 +1,60 @@
 {
-    "messageQueryName": {
-      "code": "Z34",
-      "name": "Request Complete Immunization History",
-      "id": "CDCPHINVS"
+  "messageQueryName": {
+    "code": "Z34",
+    "name": "Request Complete Immunization History",
+    "id": "CDCPHINVS"
+  },
+  "queryTag": "12345",
+  "id": {
+    "value": "1234",
+    "identifierCode": "MR"
+  },
+  "patientName":{
+  "lastName": "David",
+  "firstName": "Alice",
+  "middleName": "Clark",
+  "append": "L"},
+  "motherMaidenName": {
+    "lastName": "",
+    "firstName": "",
+    "middleName": "",
+    "append": "M"
+  },
+  "dateOfBirth": "2014-01-01",
+  "gender": "M",
+  "address": [
+    {
+      "line1": "123",
+      "line2": "MAIN STREET",
+      "city": "CHEYENNE",
+      "state": "WY",
+      "postalCode": "82002"
+    }
+  ],
+  "telecom": [
+    {
+      "code": "PRN",
+      "number": "4065551234",
+      "type": "PH",
+      "emailAddress": "",
+      "countryCode": "",
+      "extension": "",
+      "text": "",
+      "anyText": ""
     },
-    "queryTag": "12345",
-    "id": {
-      "value": "1234"
-    },
-    "identifierCode": "MR",
-    "lastName": "David",
-    "firstName": "Alice",
-    "middleName": "Clark",
-    "motherMaidenName": {
-      "lastName": "",
-      "firstName": "",
-      "middleName": ""
-    },
-    "dateOfBirth": "2014-01-01",
-    "gender": "M",
-    "address": [
-      {
-        "line1": "123",
-        "line2": "MAIN STREET",
-        "city": "CHEYENNE",
-        "state": "WY",
-        "postalCode": "82002"
-      }
-    ],
-    "telecom": [
-      {
-        "code": "PRN",
-        "number": "4065551234",
-        "type": "PH",
-        "emailAddress": "",
-        "countryCode": "",
-        "extension": "",
-        "text": "",
-        "anyText": ""
-      },
-      {
-        "code": "NET",
-        "number": "",
-        "type": "NET",
-        "emailAddress": "TEST@EMAIL.COM",
-        "countryCode": "",
-        "extension": "",
-        "text": "",
-        "anyText": ""
-      }
-    ],
-    "multipleBirthIndicator": "",
-    "birthOrder": "",
-    "clientLastUpdatedDate": "",
-    "clientLastUpdateFacility": ""
+    {
+      "code": "NET",
+      "number": "",
+      "type": "NET",
+      "emailAddress": "TEST@EMAIL.COM",
+      "countryCode": "",
+      "extension": "",
+      "text": "",
+      "anyText": ""
+    }
+  ],
+  "multipleBirthIndicator": "",
+  "birthOrder": "",
+  "clientLastUpdatedDate": "",
+  "clientLastUpdateFacility": ""
 }

@@ -1,59 +1,74 @@
 %dw 2.0
+output application/json
 import * from dw::core::Strings
-import * from dw::core::Arrays
 import try from dw::Runtime
 
-fun address(add:Array):Any = (add reduce ((item, acc = "") -> (acc) ++ "~" ++ ((item.line1 default "") ++ "^" ++ (item.line2 default "") ++ "^" ++ (item.city default "")++ "^" ++ (item.state default "") ++ "^" ++ (item.postalCode default "")++ "^" ++ (item.append default "BDL")) ))substringAfter "~"
+// Function to parse date fields 
+fun parseDate(date: String): Any = if (try(() -> date as LocalDateTime {format: "yyyy-MM-dd'T'HH:mm:ss"}).success) (date as LocalDateTime {format: "yyyy-MM-dd'T'HH:mm:ss"}) as String {format: "yyyyMMddHHmmss"}else if (try(() -> date as Date {format: "yyyy-MM-dd"}).success)(date as Date {format: "yyyy-MM-dd"}) as String {format: "yyyyMMdd"}else date
 
-fun telephone(contact:Array):Any =  (contact reduce ((item, acc = "") -> acc ++"~"++(item.anyText  default "") ++ "^"++(item.code  default "") ++ "^" ++ (item."type"  default "") ++ "^" ++(item.emailAddress default "") ++"^"++ (item.text  default "") ++"^"++ (item.number[0 to 2]  default "")++ "^" ++ (item.number[3 to -1]  default "") )) substringAfter "~"
-
-fun parseDate(date: String):Any = if(try(()-> date as LocalDateTime {format: "yyyy-MM-dd'T'HH:mm:ss"} as String {format: "yyyyMMddHHmmss"}).success) (date as LocalDateTime {format: "yyyy-MM-dd'T'HH:mm:ss"}) as String {format: "yyyyMMddHHmmss"} else if(try(()-> date as Date {format: "yyyy-MM-dd"} as String {format: "yyyyMMdd"}).success) (date as Date {format: "yyyy-MM-dd"} as String {format: "yyyyMMdd"}) else date
-
-var SFT ="SFT|::organizationName:^:organizationNameTypeCode:^:idNumber:^:identifierCheckDigit:^:checkDigitScheme:^:assigningAuthority.namespaceId:&::assigningAuthority.universalId::assigningAuthority.universalIdType:^:organization.identifierTypeCode:^:assigningFacility:^:nameRepresentationCode:^:organizationIdentifier:|:softwareCertifiedVersionOrReleaseNumber:|:softwareProductName:|:softwareBinaryId:|:softwareProductInformation:|:softwareInstallDate:"
-
-var result = {
-    (mapping.softwareVendorOrganization): payload.softwareVendorOrganization,
-    (mapping.organizationName): payload.organizationName,
-    (mapping.organizationNameTypeCode): payload.organizationNameTypeCode,
-    (mapping.idNumber): payload.idNumber,
-    (mapping.identifierCheckDigit): payload.identifierCheckDigit,
-    (mapping.checkDigitScheme): payload.checkDigitScheme,
-    assigningAuthority : {
-        (mapping.assigningAuthority.namespaceId): payload.assigningAuthority.namespaceId,
-        (mapping.assigningAuthority.universalId): payload.assigningAuthority.universalId,
-        (mapping.assigningAuthority.universalIdType): payload.assigningAuthority.universalIdType
-    },
-    organization: {
-        (mapping.organization.identifierTypeCode): payload.organization.identifierTypeCode
-    },
-    (mapping.assigningFacility): payload.assigningFacility,
-    (mapping.nameRepresentationCode): payload.nameRepresentationCode,
-    (mapping.organizationIdentifier): payload.organizationIdentifier,
-    (mapping.softwareCertifiedVersionOrReleaseNumber): payload.softwareCertifiedVersionOrReleaseNumber,
-    (mapping.softwareProductName): payload.softwareProductName,
-    (mapping.softwareBinaryId): payload.softwareBinaryId,
-    (mapping.softwareProductInformation): payload.softwareProductInformation,
-    (mapping.softwareInstallDate): payload.softwareInstallDate
+// Function to remap object values based on a different mapping object
+fun reMap(obj1, obj2) = obj2 match {
+    case is Object -> 
+      (obj1 mapObject ((value, key, index) -> {((value)substringAfter ".") : obj2[(key)]})) ++ {reMapId: ((obj1[0]) substringBefore ".")}
+    case is String -> obj2 
+    case is Array -> 
+      obj2 map ((item, index) -> (obj1[0] mapObject ((value, key, index) -> {((value)substringAfter ".") : item[(key)]})) ++ {reMapId: ((obj1[0][0]) substringBefore ".")})
+    else -> "" 
 }
 
-fun sft(data) = SFT
-replace ":softwareVendorOrganization:" with (data."1"  default "")
-replace "::organizationName:" with (data."2"  default "")
-replace ":organizationNameTypeCode:" with (data."3"  default "")
-replace ":idNumber:" with (data."4"  default "")
-replace ":identifierCheckDigit:" with (data."5"  default "")
-replace ":checkDigitScheme:" with (data."6"  default "")
-replace ":assigningAuthority.namespaceId:" with (data.assigningAuthority."7.1"  default "")
-replace "::assigningAuthority.universalId:" with (data.assigningAuthority."7.2"  default "")
-replace ":assigningAuthority.universalIdType:" with (data.assigningAuthority."7.3"  default "")
-replace ":organization.identifierTypeCode:" with (data.organization."8.1"  default "")
-replace ":assigningFacility:" with (data."9"  default "")
-replace ":nameRepresentationCode:" with (data."10"  default "")
-replace ":organizationIdentifier:" with (data."11"  default "")
-replace ":softwareCertifiedVersionOrReleaseNumber:" with (data."12"  default "")
-replace ":softwareProductName:" with (data."13"  default "")
-replace ":softwareBinaryId:" with (data."14"  default "")
-replace ":softwareProductInformation:" with (data."15"  default "")
-replace ":softwareInstallDate:" with (parseDate(data."16")  default "")
+// Function to find the maximum number of fields in the mapping JSON
+fun maxFields(mappingJson) = 
+  max((flatten((mappingJson mapObject ((value, key, index) -> 
+    "values" : value match {
+      case is Object -> valuesOf(value)
+      case is Array -> value map maxFields($)
+      case is String -> value
+      else -> 0
+    }
+  ))..)) map $ as Number)
+
+// Function to process input data
+fun inputData(obj) = ((1 to 10) map ((item, index) -> obj mapObject ((value, key, index) -> value match {
+        case is Object -> 
+          (value.reMapId): value - ("reMapId")
+        case is Array -> 
+          (value[0].reMapId): value map $ - ("reMapId")
+        else -> (mapping[key]): value 
+    })))[0] 
+
+// Function to construct a segment for HL7 message format 
+fun segmentBuild(data) = 
+  data match {
+    case is Object -> 
+      (1 to max(keysOf(data) map $ as Number)) map ((item) -> data[item as String] default "") joinBy "^"
+    case is Array -> 
+      (data reduce ((item, acc = "") -> (acc) ++ "~" ++ segmentBuild(item))) substringAfter "~" 
+    case is String -> data 
+    else -> "" 
+  }
+
+// Function to generate an HL7 message 
+fun hl7(header, details) = header ++ "|" ++ ((valuesOf(restructure))[2 to -1] map (segmentBuild($)) joinBy "|")
+
+
+// Determine the maximum number of fields based on the `mapping` input
+var maxFieldValue = maxFields(mapping)
+
+//Array of date fields to be processed
+var dateFields = ["softwareInstallDate"]
+
+//Process the payload, transforming date fields into parsed dates
+var updatedPayload = dateFields reduce (item, acc = payload) -> acc - item ++ {(item): parseDate(acc[item])}
+
+// Main result map where the SFT object is generated by applying reMap to each element of mapping and payload
+var result = {
+  SFT: keysOf(mapping) map ({($): reMap(mapping[($)], updatedPayload[($)]) }) reduce ((item, acc = {}) -> acc ++ item)
+}
+
+// Build the restructure map by processing the result.SFT and filtering based on maxFieldValue
+
+var restructure = ((0 to maxFieldValue) map (inputData(result.SFT) filterObject ((value, key, index) -> key ~= $)))map (($$ + 1): valuesOf($)[0] default "") reduce ((item, acc = {}) -> acc ++ item)
+
 ---
-sft(result)
+hl7("SFT", restructure) 
+

@@ -1,24 +1,20 @@
 {
-    "softwareVendorOrganization": "1",
-    "organizationName": "2",
-    "organizationNameTypeCode": "3",
-    "idNumber": "4",
-    "identifierCheckDigit": "5",
-    "checkDigitScheme": "6",
-    "assigningAuthority": {
-      "namespaceId": "7.1",
-      "universalId": "7.2",
-      "universalIdType": "7.3"
-    },
-    "organization": {
-      "identifierTypeCode": "8.1"
-    },
-    "assigningFacility": "9",
-    "nameRepresentationCode": "10",
-    "organizationIdentifier": "11",
-    "softwareCertifiedVersionOrReleaseNumber": "12",
-    "softwareProductName": "13",
-    "softwareBinaryId": "14",
-    "softwareProductInformation": "15",
-	"softwareInstallDate": "16"
+  "softwareVendorOrganization": {
+      "organizationName": "2.1",
+      "organizationNameTypeCode": "2.2",
+      "idNumber": "2.3",
+      "identifierCheckDigit": "2.4",
+      "checkDigitScheme": "2.5",
+      "namespaceId": "2.6",
+      "universalId": "2.7",
+      "identifierTypeCode": "2.8",
+      "assigningFacility": "2.9",
+      "nameRepresentationCode": "2.10",
+      "organizationIdentifier": "2.11"
+      },
+  "softwareCertifiedVersionOrReleaseNumber": "3",
+  "softwareProductName": "4",
+  "softwareBinaryId": "5",
+  "softwareProductInformation": "0",
+  "softwareInstallDate": "0"
 }

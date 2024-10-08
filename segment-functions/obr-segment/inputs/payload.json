@@ -1,69 +1,70 @@
 {
-      "orderControl": "1",
-      "placerOrderNumber": {
-        "name": "VISIT",
-        "universalId": "2.16.840.1.113883.3.10009",
-        "uidType": "ISO"
-      },
-      "fillerOrderNumber": {
-        "entityIdentifier": "VISIT-ENC-20",
-        "name": "test",
-        "universalId": "15D1234567",
-        "uidType": "CLIA"
-      },
-      "testRequested": {
-        "identifier": "625-4",
-        "text": "Bacteria identified:Prid:Pt:Stool:Nom:Culture",
-        "codingSystem": "LN",
-        "codingSystemVersion": ""
-      },
-      "observationBeginDateTime": "201608151030-0500",
-      "observationEndDateTime": "201608151030-0500",
-      "dateTimeOfTransaction": "",
-      "relevantClinicalInfo": "",
-      "specimenReceivedDateTime": "",
-      "specimenSource": "",
-      "orderingProvider": {
-        "idNumber": "SIISCLIENT3361",
-        "lastName": "MAGNOLIA",
-        "firstName": "IRENE",
-        "MI": "",
-        "suffix": "",
-        "prefix": ""
-      },
-      "callBackPhoneNumber": [
-        {
-          "code": "WPN",
-          "type": "",
-          "emailAddress": "",
-          "countryCode": "",
-          "extension": "",
-          "text": "",
-          "anyText": ""
-        }
-      ],
-      "resultsDateTime": "202209281232-0500",
-      "resultStatus": "F",
-      "parentResult": {
-        "identifier": "",
-        "text": "",
-        "codingSystem": "",
-        "parentObsSubId": "",
-        "parentObsValueDesc": ""
-      },
-      "parent": {
-        "placerAssignedId": "",
-        "fillerAssignedId": ""
-      },
-      "reasonForStudy": {
-        "identifier": "",
-        "text": "",
-        "codingSystem": "",
-        "date": ""
-      },
-      "principalResultInterpreter": {
-        "code": "",
-        "firstName": "Slide",
-        "lastName": "Stan"
-      }
+  "orderControl": "1",
+  "placerOrderNumber": {
+    "entityIdentifier": "",
+    "name": "VISIT",
+    "universalId": "2.16.840.1.113883.3.10009",
+    "uidType": "ISO"
+  },
+  "fillerOrderNumber": {
+    "entityIdentifier": "VISIT-ENC-20",
+    "name": "test",
+    "universalId": "15D1234567",
+    "uidType": "CLIA"
+  },
+  "testRequested": {
+    "identifier": "625-4",
+    "text": "Bacteria identified:Prid:Pt:Stool:Nom:Culture",
+    "codingSystem": "LN",
+    "codingSystemVersion": ""
+  },
+  "observationBeginDateTime": "201608151030-0500",
+  "observationEndDateTime": "201608151030-0500",
+  "dateTimeOfTransaction": "",
+  "relevantClinicalInfo": "",
+  "specimenReceivedDateTime": "",
+  "specimenSource": "",
+  "orderingProvider": {
+    "idNumber": "SIISCLIENT3361",
+    "lastName": "MAGNOLIA",
+    "firstName": "IRENE",
+    "MI": "",
+    "suffix": "",
+    "prefix": ""
+  },
+  "callBackPhoneNumber": [
+    {
+      "code": "WPN",
+      "type": "",
+      "emailAddress": "",
+      "countryCode": "",
+      "extension": "",
+      "text": "",
+      "anyText": ""
+    }
+  ],
+  "resultsDateTime": "202209281232-0500",
+  "resultStatus": "F",
+  "parentResult": {
+    "identifier": "",
+    "text": "",
+    "codingSystem": "",
+    "parentObsSubId": "",
+    "parentObsValueDesc": ""
+  },
+  "parent": {
+    "placerAssignedId": "",
+    "fillerAssignedId": ""
+  },
+  "reasonForStudy": {
+    "identifier": "",
+    "text": "",
+    "codingSystem": "",
+    "date": ""
+  },
+  "principalResultInterpreter": {
+    "code": "",
+    "firstName": "Slide",
+    "lastName": "Stan"
   }
+}

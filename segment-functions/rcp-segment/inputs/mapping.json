@@ -1,12 +1,12 @@
 { 
-        "queryPriority": "2",
+        "queryPriority": "1",
         "quantityLimitedRequest": {
-            "maxLength": "3.1",
-            "units": "3.2"
+            "maxLength": "2.1",
+            "units": "2.2"
         },
-        "responseModality": "4",
-        "modifyIndicator": "5",
-        "sortByField": "6",
-        "segmentGroupInclusion": "7"
+        "responseModality": "3",
+        "modifyIndicator": "0",
+        "sortByField": "0",
+        "segmentGroupInclusion": "0"
     
   }

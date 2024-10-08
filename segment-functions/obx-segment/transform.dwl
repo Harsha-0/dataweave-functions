@@ -1,94 +1,75 @@
 %dw 2.0
+output application/json
 import * from dw::core::Strings
-import * from dw::core::Arrays
 import try from dw::Runtime
 
-fun address(add:Array):Any = (add reduce ((item, acc = "") -> (acc) ++ "~" ++ ((item.line1 default "") ++ "^" ++ (item.line2 default "") ++ "^" ++ (item.city default "")++ "^" ++ (item.state default "") ++ "^" ++ (item.postalCode default "")++ "^" ++ (item.append default "BDL")) ))substringAfter "~"
+// Function to parse date fields 
+fun parseDate(date: String): Any = if (try(() -> date as LocalDateTime {format: "yyyy-MM-dd'T'HH:mm:ss"}).success) (date as LocalDateTime {format: "yyyy-MM-dd'T'HH:mm:ss"}) as String {format: "yyyyMMddHHmmss"}else if (try(() -> date as Date {format: "yyyy-MM-dd"}).success)(date as Date {format: "yyyy-MM-dd"}) as String {format: "yyyyMMdd"}else date
 
-fun telephone(contact:Array):Any =  (contact reduce ((item, acc = "") -> acc ++"~"++(item.anyText  default "") ++ "^"++(item.code  default "") ++ "^" ++ (item."type"  default "") ++ "^" ++(item.emailAddress default "") ++"^"++ (item.text  default "") ++"^"++ (item.number[0 to 2]  default "")++ "^" ++ (item.number[3 to -1]  default "") )) substringAfter "~"
-
-fun parseDate(date: String):Any = if(try(()-> date as LocalDateTime {format: "yyyy-MM-dd'T'HH:mm:ss"} as String {format: "yyyyMMddHHmmss"}).success) (date as LocalDateTime {format: "yyyy-MM-dd'T'HH:mm:ss"}) as String {format: "yyyyMMddHHmmss"} else if(try(()-> date as Date {format: "yyyy-MM-dd"} as String {format: "yyyyMMdd"}).success) (date as Date {format: "yyyy-MM-dd"} as String {format: "yyyyMMdd"}) else date
-
-var OBX="OBX|:setId:|:valueType:|:observationIdentifier.id:^:observationIdentifier.description:^:observationIdentifier.code:^|:observationSubID:|:observationValue.id:^:observationValue.description:^:observationValue.code:|:units:|:referencesRange:|:abnormalFlags:|:probability:|:natureOfAbnormalTest:|:observationResultStatus:|:effectiveDateOfReferenceRangeValues:|:userDefinedAccessChecks:|:dateTimeOfTheObservation:|:producersReference:|:responsibleObserver:|:observationMethod.id:^:observationMethod.description:^:observationMethod.code:|:equipmentInstanceIdentifier:|:dateTimeOfTheAnalysis:|:reservedForHarmonizationWithV2.6:||:performingOrganizationName.name:^:performingOrganizationName.universalId:^:performingOrganizationName.uidType:^:performingOrganizationName.code:^:performingOrganizationName.identifier:|:performingOrganizationAddress:|:performingOrganizationMedicalDirector:|"
-
-var result = {
-    (mapping.setId): payload.setId,
-    (mapping.valueType): payload.valueType,
-    observationIdentifier: {
-        (mapping.observationIdentifier.id): payload.observationIdentifier.id,
-        (mapping.observationIdentifier.description): payload.observationIdentifier.description,
-        (mapping.observationIdentifier.code): payload.observationIdentifier.code
-    },
-    observationMethod: {
-        (mapping.observationMethod.id): payload.observationMethod.id,
-        (mapping.observationMethod.description): payload.observationMethod.description,
-        (mapping.observationMethod.code): payload.observationMethod.code
-    },
-    observationValue: {
-        (mapping.observationValue.id): payload.observationValue.id,
-        (mapping.observationValue.description): payload.observationValue.description,
-        (mapping.observationValue.code): payload.observationValue.code
-    },
-    (mapping.observationSubID): payload.observationSubID,
-    (mapping.units): payload.units,
-    (mapping.referencesRange): payload.referencesRange,
-    (mapping.abnormalFlags): payload.abnormalFlags,
-    (mapping.probability): payload.probability,
-    (mapping.natureOfAbnormalTest): payload.natureOfAbnormalTest,
-    (mapping.observationResultStatus): payload.observationResultStatus,
-    (mapping.effectiveDateOfReferenceRangeValues): payload.effectiveDateOfReferenceRangeValues,
-    (mapping.userDefinedAccessChecks): payload.userDefinedAccessChecks,
-    (mapping.dateTimeOfTheObservation): payload.dateTimeOfTheObservation,
-    (mapping.producersReference): payload.producersReference,
-    (mapping.responsibleObserver): payload.responsibleObserver,
-    (mapping.equipmentInstanceIdentifier): payload.equipmentInstanceIdentifier,
-    (mapping.dateTimeOfTheAnalysis): payload.dateTimeOfTheAnalysis,
-    (mapping."reservedForHarmonizationWithV2.6"): payload."reservedForHarmonizationWithV2.6",
-    performingOrganizationName: {
-        (mapping.performingOrganizationName.name): payload.performingOrganizationName.name,
-        (mapping.performingOrganizationName.codeType): payload.performingOrganizationName.codeType,
-        (mapping.performingOrganizationName.universalId): payload.performingOrganizationName.universalId,
-        (mapping.performingOrganizationName.uidType): payload.performingOrganizationName.uidType,
-        (mapping.performingOrganizationName.code): payload.performingOrganizationName.code,
-        (mapping.performingOrganizationName.identifier): payload.performingOrganizationName.identifier
-    },
-    (mapping.performingOrganizationAddress): payload.performingOrganizationAddress,
-    (mapping.performingOrganizationMedicalDirector): payload.performingOrganizationMedicalDirector
+// Function to remap object values based on a different mapping object
+fun reMap(obj1, obj2) = obj2 match {
+    case is Object -> 
+      (obj1 mapObject ((value, key, index) -> {((value)substringAfter ".") : obj2[(key)]})) ++ {reMapId: ((obj1[0]) substringBefore ".")}
+    case is String -> obj2 
+    case is Array -> 
+      obj2 map ((item, index) -> (obj1[0] mapObject ((value, key, index) -> {((value)substringAfter ".") : item[(key)]})) ++ {reMapId: ((obj1[0][0]) substringBefore ".")})
+    else -> "" 
 }
-fun obx(data) =((OBX
-replace ":setId:" with (data."2" default "")
-replace ":valueType:" with (data."3" default "")
-replace ":observationIdentifier.id:" with (data.observationIdentifier."4.1" default "")
-replace ":observationIdentifier.description:" with (data.observationIdentifier."4.2" default "")
-replace ":observationIdentifier.code:" with (data.observationIdentifier."4.3" default "")
-replace ":observationSubID:" with (data."7" default "")
-replace ":observationValue.id:" with parseDate(data.observationValue."6.1" default "")
-replace "^:observationValue.description:" with (if(isEmpty(data.observationValue."6.2"))"" else ("^" ++(data.observationValue."6.2" default ""))))
-replace "^:observationValue.code:" with (if(isEmpty(data.observationValue."6.3"))"" else ("^"++(data.observationValue."6.3" default ""))))
-replace ":units:" with (data."8"  default "")
-replace ":referencesRange:" with (data."9"  default "")
-replace ":abnormalFlags:" with (data."10"  default "")
-replace ":probability:" with (data."11"  default "")
-replace ":natureOfAbnormalTest:" with (data."12"  default "")
-replace ":observationResultStatus:" with (data."13" default "")
-replace ":effectiveDateOfReferenceRangeValues:" with (data."14" default "")
-replace ":userDefinedAccessChecks:" with (data."15"  default "")
-replace ":dateTimeOfTheObservation:" with (parseDate(data."16" default ""))
-replace ":producersReference:" with (data."17"  default "")
-replace ":responsibleObserver:" with (data."18"  default "")
-replace ":observationMethod.id:" with (data.observationMethod."5.1" default "")
-replace ":observationMethod.description:" with (data.observationMethod."5.2" default "")
-replace ":observationMethod.code:" with (data.observationMethod."5.3" default "")
-replace ":equipmentInstanceIdentifier:" with (data."19" default "")
-replace ":dateTimeOfTheAnalysis:" with (parseDate(data."20" default ""))
-replace ":reservedForHarmonizationWithV2.6:" with (data."21" default "")
-replace ":performingOrganizationName.name:" with (data.performingOrganizationName."22.1"  default "")
-replace ":performingOrganizationName.codeType:" with (data.performingOrganizationName."22.2"  default "")
-replace ":performingOrganizationName.universalId:" with (data.performingOrganizationName."22.3"  default "")
-replace ":performingOrganizationName.uidType:" with (data.performingOrganizationName."22.4"  default "")
-replace ":performingOrganizationName.code:" with (data.performingOrganizationName."22.5"  default "")
-replace ":performingOrganizationName.identifier:" with (data.performingOrganizationName."22.6"  default "")
-replace ":performingOrganizationAddress:" with (data."23" default "")
-replace ":performingOrganizationMedicalDirector:" with (data."24" default "")
+
+// Function to find the maximum number of fields in the mapping JSON
+fun maxFields(mappingJson) = 
+  max((flatten((mappingJson mapObject ((value, key, index) -> 
+    "values" : value match {
+      case is Object -> valuesOf(value)
+      case is Array -> value map maxFields($)
+      case is String -> value
+      else -> 0
+    }
+  ))..)) map $ as Number)
+
+// Function to process input data
+fun inputData(obj) = ((1 to 10) map ((item, index) -> obj mapObject ((value, key, index) -> value match {
+        case is Object -> 
+          (value.reMapId): value - ("reMapId")
+        case is Array -> 
+          (value[0].reMapId): value map $ - ("reMapId")
+        else -> (mapping[key]): value 
+    })))[0] 
+
+// Function to construct a segment for HL7 message format 
+fun segmentBuild(data) = 
+  data match {
+    case is Object -> 
+      (1 to max(keysOf(data) map $ as Number)) map ((item) -> data[item as String] default "") joinBy "^"
+    case is Array -> 
+      (data reduce ((item, acc = "") -> (acc) ++ "~" ++ segmentBuild(item))) substringAfter "~" 
+    case is String -> data 
+    else -> "" 
+  }
+
+// Function to generate an HL7 message 
+fun hl7(header, details) = header ++ "|" ++ ((valuesOf(restructure))[2 to -1] map (segmentBuild($)) joinBy "|")
+
+
+// Determine the maximum number of fields based on the `mapping` input
+var maxFieldValue = maxFields(mapping)
+
+//Array of date fields to be processed
+var dateFields = ["effectiveDateOfReferenceRangeValues","dateTimeOfTheObservation","dateTimeOfTheAnalysis"]
+
+//Process the payload, transforming date fields into parsed dates
+var updatedPayload = dateFields reduce (item, acc = payload) -> acc - item ++ {(item): parseDate(acc[item])}
+
+// Main result map where the OBX object is generated by applying reMap to each element of mapping and payload
+var result = {
+  OBX: keysOf(mapping) map ({($): reMap(mapping[($)], updatedPayload[($)]) }) reduce ((item, acc = {}) -> acc ++ item)
+}
+
+
+// Build the restructure map by processing the result.OBX and filtering based on maxFieldValue
+
+var restructure = ((0 to maxFieldValue) map (inputData(result.OBX) filterObject ((value, key, index) -> key ~= $)))map (($$ + 1): valuesOf($)[0] default "") reduce ((item, acc = {}) -> acc ++ item)
+
 ---
-obx(result)
+hl7("OBX", restructure) 
+

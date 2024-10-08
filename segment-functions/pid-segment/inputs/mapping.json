@@ -73,12 +73,12 @@
   "patientDeathDateAndTime": "30",
   "patientDeathIndicator": "31",
   "identityUnknownIndicator": "32",
-  "identityReliabilityCode": "33",
-  "lastUpdateDateTime": "34",
-  "lastUpdateFacility": "35",
-  "speciesCode": "36",
-  "breedCode": "37",
-  "strain": "38",
-  "productionClassCode": "39",
-  "tribalCitizenship": "40"
+  "identityReliabilityCode": "0",
+  "lastUpdateDateTime": "0",
+  "lastUpdateFacility": "0",
+  "speciesCode": "0",
+  "breedCode": "0",
+  "strain": "0",
+  "productionClassCode": "0",
+  "tribalCitizenship": "0"
 }

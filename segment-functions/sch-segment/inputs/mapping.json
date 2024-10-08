@@ -1,12 +1,30 @@
- {
-    "placerAppointmentId": "2",
-    "fillerAppointmentId": "3",
-    "appointmentType": "4",
-    "appointmentDuration": "5",
-    "appointmentDurationUnits": "6",
-    "appointmentTimingQuantity": {
-      "startDateTime": "7.1",
-      "endDateTime": "7.2"
-    },
-    "fillerStatusCode": "8"
-  }
+{
+  "placerAppointmentId": "2",
+  "fillerAppointmentId": "3",
+  "occuranceNumber": "4",
+  "placerGroupNumber": "5",
+  "scheduleID": "6",
+  "eventReason": "7",
+  "appointmentReason": "8",
+  "appointmentType": "9",
+  "appointmentDuration": "10",
+  "appointmentDurationUnits": "11",
+  "appointmentTimingQuantity": {
+    "startDateTime": "12.1",
+    "endDateTime": "12.2"
+  },
+  "placerContactPerson": "13",
+  "placerContactPhoneNumber": "14",
+  "placerContactAddress": "15",
+  "placerContactLocation": "16",
+  "fillerContactPerson": "17",
+  "fillerContactPhoneNumber": "18",
+  "fillerContactAddress": "19",
+  "fillerContactLocation": "20",
+  "enteredbyPerson": "21",
+  "enteredbyPhoneNumber": "22",
+  "enteredbyLocation": "23",
+  "parentPlacerAppointmentID": "24",
+  "parentFillerAppointmentID": "25",
+  "fillerStatusCode": "26"
+}

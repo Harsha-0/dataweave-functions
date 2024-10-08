@@ -1,8 +1,8 @@
 {
-    "setId": "1",
-    "patientClass": "",
-    "assignedPatientLocation": {
-      "code": "5",
-      "description": "CLARK COUNTY HEALTH DEPARTMENT"
-    }
+  "setId": "1",
+  "patientClass": "",
+  "assignedPatientLocation": {
+    "code": "5",
+    "description": "CLARK COUNTY HEALTH DEPARTMENT"
+  }
 }

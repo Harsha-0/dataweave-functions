@@ -1,100 +1,74 @@
 %dw 2.0
+output application/json
 import * from dw::core::Strings
-import * from dw::core::Arrays
 import try from dw::Runtime
 
-fun address(add:Array):Any = (add reduce ((item, acc = "") -> (acc) ++ "~" ++ ((item.line1 default "") ++ "^" ++ (item.line2 default "") ++ "^" ++ (item.city default "")++ "^" ++ (item.state default "") ++ "^" ++ (item.postalCode default "")++ "^" ++ (item.append default "BDL")) ))substringAfter "~"
+// Function to parse date fields 
+fun parseDate(date: String): Any = if (try(() -> date as LocalDateTime {format: "yyyy-MM-dd'T'HH:mm:ss"}).success) (date as LocalDateTime {format: "yyyy-MM-dd'T'HH:mm:ss"}) as String {format: "yyyyMMddHHmmss"}else if (try(() -> date as Date {format: "yyyy-MM-dd"}).success)(date as Date {format: "yyyy-MM-dd"}) as String {format: "yyyyMMdd"}else date
 
-fun telephone(contact:Array):Any =  (contact reduce ((item, acc = "") -> acc ++"~"++(item.anyText  default "") ++ "^"++(item.code  default "") ++ "^" ++ (item."type"  default "") ++ "^" ++(item.emailAddress default "") ++"^"++ (item.text  default "") ++"^"++ (item.number[0 to 2]  default "")++ "^" ++ (item.number[3 to -1]  default "") )) substringAfter "~"
-
-fun parseDate(date: String):Any = if(try(()-> date as LocalDateTime {format: "yyyy-MM-dd'T'HH:mm:ss"} as String {format: "yyyyMMddHHmmss"}).success) (date as LocalDateTime {format: "yyyy-MM-dd'T'HH:mm:ss"}) as String {format: "yyyyMMddHHmmss"} else if(try(()-> date as Date {format: "yyyy-MM-dd"} as String {format: "yyyyMMdd"}).success) (date as Date {format: "yyyy-MM-dd"} as String {format: "yyyyMMdd"}) else date
-
-
-
-var ORC = "ORC|::orderControl:|:placerOrderNumber:^:placerOrderId:^:placerOrderCode:^:placerOrderIdentifier:|:fillerOrderNumber.entityIdentifier:^:fillerOrderNumber.name:^:fillerOrderNumber.universalId:^:fillerOrderNumber.uidType:|:placerGroupNumber:|::orderStatus:|:responseFlag:|:quantityTiming:|:parent:|:dateTimeOfTransaction:|:enteredBy.id:^:enteredBy.firstName:^:enteredBy.lastName:|:verifiedBy:|:provider.id:^:provider.firstName:^:provider.lastName:|:enterersLocation:|:callBackPhoneNumber:|:orderEffectiveDateTime:|:orderControlCodeReason:|:enteringOrganization:|:enteringDevice:|:actionBy:|:advancedBeneficiaryNoticeCode:|:orderingFacilityName.name:^:orderingFacilityName.codeType:^:orderingFacilityName.code:^:orderingFacilityName.uidType:^:orderingFacilityName.universalId:|:orderingFacilityAddressArray:|:orderingFacilityPhoneNumber:|:orderingProviderAddress:|:orderStatusModifier:|:advancedBeneficiaryNoticeOverrideReason:|:fillersExpectedAvailabilityDateTime:|:confidentialityCode:|:orderType:|:entererAuthorizationMode:|:universalServiceidentifier:|"
-
-var RXA = "RXA|:giveSubIDCounter:|:administrationSubIDCounter:|:dateTimeStartOfAdministration:|:dateTimeEndOfAdministration:|:administeredCode.id:^:administeredCode.description:^:administeredCode.code:|:administeredAmount:|:administeredUnits.code:^:administeredUnits.unit:^:administeredUnits.id:|:administeredDosageForm:|:administrationNotes.id:^:administrationNotes.name:^:administrationNotes.code:|:administeringProvider:|^^^:administeredatLocation:|:administeredPer:|::administeredStrength:|:administeredStrengthUnits:|:substanceLotNumber:|:substanceExpirationDate:|:substanceManufacturerName.id:^:substanceManufacturerName.name:^:substanceManufacturerName.code:|:substanceTreatmentRefusalReason:|:indication:|:CompletionStatus:|:actionCode:|:systemEntryDateTime:|::administeredDrugStrengthVolume:|:administeredDrugStrengthVolumeUnits:|:administeredBarcodeIdentifier:|:pharmacyOrderType:|"
-
-var result = {
-    (mapping.giveSubIDCounter): payload.giveSubIDCounter,
-    (mapping.administrationSubIDCounter): payload.administrationSubIDCounter,
-    (mapping.dateTimeStartOfAdministration): payload.dateTimeStartOfAdministration,
-    (mapping.dateTimeEndOfAdministration): payload.dateTimeEndOfAdministration,
-    administeredCode: {
-        (mapping.administeredCode.id): payload.administeredCode.id,
-        (mapping.administeredCode.description): payload.administeredCode.description,
-        (mapping.administeredCode.code): payload.administeredCode.code
-    },
-    (mapping.administeredAmount): payload.administeredAmount,
-    administeredUnits: {
-        (mapping.administeredUnits.code): payload.administeredUnits.code,
-        (mapping.administeredUnits.unit): payload.administeredUnits.unit,
-        (mapping.administeredUnits.id): payload.administeredUnits.id
-    },
-    (mapping.administeredDosageForm): payload.administeredDosageForm,
-    administrationNotes: {
-        (mapping.administrationNotes.id): payload.administrationNotes.id,
-        (mapping.administrationNotes.name): payload.administrationNotes.name,
-        (mapping.administrationNotes.code): payload.administrationNotes.code
-    },
-    (mapping.administeringProvider): payload.administeringProvider,
-    (mapping.administeredAtLocation): payload.administeredAtLocation,
-    (mapping.administeredPer): payload.administeredPer,
-    (mapping.administeredStrength): payload.administeredStrength,
-    (mapping.administeredStrengthUnits): payload.administeredStrengthUnits,
-    (mapping.substanceLotNumber): payload.substanceLotNumber,
-    (mapping.substanceExpirationDate): payload.substanceExpirationDate,
-    substanceManufacturerName: {
-        (mapping.substanceManufacturerName.id): payload.substanceManufacturerName.id,
-        (mapping.substanceManufacturerName.name): payload.substanceManufacturerName.name,
-        (mapping.substanceManufacturerName.code): payload.substanceManufacturerName.code
-    },
-    (mapping.substanceTreatmentRefusalReason): payload.substanceTreatmentRefusalReason,
-    (mapping.indication): payload.indication,
-    (mapping.CompletionStatus): payload.CompletionStatus,
-    (mapping.actionCode): payload.actionCode,
-    (mapping.systemEntryDateTime): payload.systemEntryDateTime,
-    (mapping.administeredDrugStrengthVolume): payload.administeredDrugStrengthVolume,
-    (mapping.administeredDrugStrengthVolumeUnits): payload.administeredDrugStrengthVolumeUnits,
-    (mapping.administeredBarcodeIdentifier): payload.administeredBarcodeIdentifier,
-    (mapping.pharmacyOrderType): payload.pharmacyOrderType
+// Function to remap object values based on a different mapping object
+fun reMap(obj1, obj2) = obj2 match {
+    case is Object -> 
+      (obj1 mapObject ((value, key, index) -> {((value)substringAfter ".") : obj2[(key)]})) ++ {reMapId: ((obj1[0]) substringBefore ".")}
+    case is String -> obj2 
+    case is Array -> 
+      obj2 map ((item, index) -> (obj1[0] mapObject ((value, key, index) -> {((value)substringAfter ".") : item[(key)]})) ++ {reMapId: ((obj1[0][0]) substringBefore ".")})
+    else -> "" 
 }
-fun rxa(data)=RXA
-replace ":giveSubIDCounter:" with (data."2" default "")
-replace ":administrationSubIDCounter:" with (data."3" default "")
-replace ":dateTimeStartOfAdministration:" with (( parseDate(data."4")  default ""))
-replace ":dateTimeEndOfAdministration:" with ((parseDate(data."5" )default ""))
-replace ":administeredCode.id:" with( data.administeredCode."6.1" default "")
-replace ":administeredCode.description:" with (data.administeredCode."6.2" default "")
-replace ":administeredCode.code:" with (data.administeredCode."6.3" default "")
-replace ":administeredAmount:" with (data."7" default "")
-replace ":administeredUnits.code:" with (data.administeredUnits."8.1" default "")
-replace ":administeredUnits.unit:" with (data.administeredUnits."8.2" default "")
-replace ":administeredUnits.id:" with (data.administeredUnits."8.3" default "")
-replace ":administeredDosageForm:" with (data."9" default "")
-replace ":administrationNotes.id:" with (data.administrationNotes."10.1" default "")
-replace ":administrationNotes.name:" with (data.administrationNotes."10.2" default "")
-replace ":administrationNotes.code:" with (data.administrationNotes."10.3" default "")
-replace ":administeringProvider:" with (data."11" default "")
-replace ":administeredatLocation:" with (data."12" default "")
-replace ":administeredPer:" with (data."13" default "")
-replace "::administeredStrength:" with (data."14" default "")
-replace ":administeredStrengthUnits:" with (data."15" default "")
-replace ":substanceLotNumber:" with (data."16" default "")
-replace ":substanceExpirationDate:" with ( parseDate(data."17")  default "")
-replace ":substanceManufacturerName.id:" with (data.substanceManufacturerName."18.1" default "")
-replace ":substanceManufacturerName.name:" with (data.substanceManufacturerName."18.2" default "")
-replace ":substanceManufacturerName.code:" with (data.substanceManufacturerName."18.3" default "")
-replace ":substanceTreatmentRefusalReason:" with (data."19" default "")
-replace ":indication:" with (data."20" default "")
-replace ":CompletionStatus:" with (data."21" default "")
-replace ":actionCode:" with (data."22" default "")
-replace ":systemEntryDateTime:" with (data."23" default "")
-replace "::administeredDrugStrengthVolume:" with (data."24" default "")
-replace ":administeredDrugStrengthVolumeUnits:" with (data."25" default "")
-replace ":administeredBarcodeIdentifier:" with (data."26" default "")
-replace ":pharmacyOrderType:" with (data."27" default "")
 
+// Function to find the maximum number of fields in the mapping JSON
+fun maxFields(mappingJson) = 
+  max((flatten((mappingJson mapObject ((value, key, index) -> 
+    "values" : value match {
+      case is Object -> valuesOf(value)
+      case is Array -> value map maxFields($)
+      case is String -> value
+      else -> 0
+    }
+  ))..)) map $ as Number)
+
+// Function to process input data
+fun inputData(obj) = ((1 to 10) map ((item, index) -> obj mapObject ((value, key, index) -> value match {
+        case is Object -> 
+          (value.reMapId): value - ("reMapId")
+        case is Array -> 
+          (value[0].reMapId): value map $ - ("reMapId")
+        else -> (mapping[key]): value 
+    })))[0] 
+
+// Function to construct a segment for HL7 message format 
+fun segmentBuild(data) = 
+  data match {
+    case is Object -> 
+      (1 to max(keysOf(data) map $ as Number)) map ((item) -> data[item as String] default "") joinBy "^"
+    case is Array -> 
+      (data reduce ((item, acc = "") -> (acc) ++ "~" ++ segmentBuild(item))) substringAfter "~" 
+    case is String -> data 
+    else -> "" 
+  }
+
+// Function to generate an HL7 message 
+fun hl7(header, details) = header ++ "|" ++ ((valuesOf(restructure))[2 to -1] map (segmentBuild($)) joinBy "|")
+
+
+// Determine the maximum number of fields based on the `mapping` input
+var maxFieldValue = maxFields(mapping)
+
+//Array of date fields to be processed
+var dateFields = ["dateTimeStartOfAdministration","dateTimeEndOfAdministration","substanceExpirationDate","systemEntryDateTime"]
+
+//Process the payload, transforming date fields into parsed dates
+var updatedPayload = dateFields reduce (item, acc = payload) -> acc - item ++ {(item): parseDate(acc[item])}
+
+// Main result map where the RXA object is generated by applying reMap to each element of mapping and payload
+var result = {
+  RXA: keysOf(mapping) map ({($): reMap(mapping[($)], updatedPayload[($)]) }) reduce ((item, acc = {}) -> acc ++ item)
+}
+
+// Build the restructure map by processing the result.RXA and filtering based on maxFieldValue
+
+var restructure = ((0 to maxFieldValue) map (inputData(result.RXA) filterObject ((value, key, index) -> key ~= $)))map (($$ + 1): valuesOf($)[0] default "") reduce ((item, acc = {}) -> acc ++ item)
 
 ---
-rxa(result)
+hl7("RXA", restructure) 
+

@@ -20,8 +20,8 @@
   "advanceDirectiveCode": "16",
   "immunizationRegistryStatus": "17",
   "immunizationRegistryStatusEffectiveDate": "18",
-  "publicityCodeEffectiveDate": "19",
-  "militaryBranch": "20",
-  "militaryRankGrade": "21",
-  "militaryStatus": "22"
+  "publicityCodeEffectiveDate": "0",
+  "militaryBranch": "0",
+  "militaryRankGrade": "0",
+  "militaryStatus": "0"
 }

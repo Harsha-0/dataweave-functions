@@ -1,69 +1,73 @@
 {
-    "orderControl": "RE",
-      "placerOrderNumber": {
-        "number": "VISIT-ENC-20",
-        "id": "EHR",
-        "code": "1.3.840.10050.1.13.510.2.7.2.798268",
-        "identifier": "ISO"
-      },
-      "fillerOrderNumber": {
-        "entityIdentifier": "VISIT-ENC-20",
-        "name": "NAME HOSPITAL",
-        "universalId": "15D1234567",
-        "uidType": "CLIA"
-      },
-      "placerGroupNumber": "",
-      "orderStatus": "",
-      "responseFlag": "",
-      "quantityTiming": "",
-      "parent": "",
-      "dateTimeOfTransaction": "",
-      "verifiedBy": "Dr. Smith",
-      "provider": {
-        "id": "SIISCLIENT3361",
-        "firstName": "IRENE",
-        "lastName": "MAGNOLIA"
-      },
-      "enterersLocation": "Hospital ABC",
-      "callBackPhoneNumber": [
-        {
-          "code": "WPN",
-          "type": "",
-          "emailAddress": "",
-          "countryCode": "",
-          "extension": "",
-          "text": "",
-          "anyText": ""
-        }
-      ],
-      "orderEffectiveDateTime": "",
-      "orderControlCodeReason": "",
-      "enteringOrganization": "",
-      "actionBy": "",
-      "advancedBeneficiaryNoticeCode": "",
-      "orderingFacilityName": {
-        "name": "NAME HOSPITAL",
-        "codeType": "L",
-        "code": "15D1234567",
-        "uidType": "CLIA",
-        "universalId": "XX"
-      },
-      "orderingFacilityAddress": [
-        {
-          "line1": "1005 Healthcare Drive",
-          "line2": "",
-          "city": "Ann Arbor",
-          "state": "MI",
-          "postalCode": "99999",
-          "append": "USA"
-        }
-      ],
-      "orderingFacilityPhoneNumber": "",
-      "orderingProviderAddress": "",
-      "orderStatusModifier": "",
-      "fillersExpectedAvailabilityDateTime": "",
-      "confidentialityCode": "",
-      "orderType": "",
-      "entererAuthorizationMode": "",
-      "universalServiceidentifier": ""
-  }
+  "orderControl": "RE",
+    "placerOrderNumber": {
+      "number": "VISIT-ENC-20",
+      "id": "EHR",
+      "code": "1.3.840.10050.1.13.510.2.7.2.798268",
+      "identifier": "ISO"
+    },
+    "fillerOrderNumber": {
+      "entityIdentifier": "VISIT-ENC-20",
+      "name": "NAME HOSPITAL",
+      "universalId": "15D1234567",
+      "uidType": "CLIA"
+    },
+    "placerGroupNumber": "",
+    "orderStatus": "",
+    "responseFlag": "",
+    "quantityTiming": "",
+    "parent": "",
+    "dateTimeOfTransaction": "",
+    "enteredBy":{
+        "id":"",
+        "firstName":"",
+        "lastName": "" },
+    "verifiedBy": "Dr. Smith",
+    "provider": {
+      "id": "SIISCLIENT3361",
+      "firstName": "IRENE",
+      "lastName": "MAGNOLIA"
+    },
+    "enterersLocation": "Hospital ABC",
+    "callBackPhoneNumber": [
+      {
+        "code": "WPN",
+        "type": "",
+        "emailAddress": "",
+        "countryCode": "",
+        "extension": "",
+        "text": "",
+        "anyText": ""
+      }
+    ],
+    "orderEffectiveDateTime": "",
+    "orderControlCodeReason": "",
+    "enteringOrganization": "",
+    "actionBy": "",
+    "advancedBeneficiaryNoticeCode": "",
+    "orderingFacilityName": {
+      "name": "NAME HOSPITAL",
+      "codeType": "L",
+      "code": "15D1234567",
+      "uidType": "CLIA",
+      "universalId": "XX"
+    },
+    "orderingFacilityAddress": [
+      {
+        "line1": "1005 Healthcare Drive",
+        "line2": "",
+        "city": "Ann Arbor",
+        "state": "MI",
+        "postalCode": "99999",
+        "append": "USA"
+      }
+    ],
+    "orderingFacilityPhoneNumber": "",
+    "orderingProviderAddress": "",
+    "orderStatusModifier": "",
+    "fillersExpectedAvailabilityDateTime": "",
+    "confidentialityCode": "",
+    "orderType": "",
+    "entererAuthorizationMode": "",
+    "universalServiceidentifier": ""
+}

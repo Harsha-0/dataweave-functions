@@ -1,44 +1,44 @@
 {
-      "giveSubIDCounter": "2",
-      "administrationSubIDCounter": "3",
-      "dateTimeStartOfAdministration": "4",
-      "dateTimeEndOfAdministration": "25",
-      "administeredCode": {
-        "id": "6.1",
-        "description": "6.2",
-        "code": "6.3"
-      },
-      "administeredAmount": "7",
-      "administeredUnits": {
-        "code": "8.1",
-        "unit": "8.2",
-        "id": "8.3"
-      },
-      "administeredDosageForm": "9",
-      "administrationNotes": {
-        "id": "10.1",
-        "name": "10.2",
-        "code": "10.3"
-      },
-      "administeringProvider": "11",
-      "administeredAtLocation": "12",
-      "administeredPer": "13",
-      "administeredStrength": "14",
-      "administeredStrengthUnits": "15",
-      "substanceLotNumber": "16",
-      "substanceExpirationDate": "17",
-      "substanceManufacturerName": {
-        "id": "18.1",
-        "name": "18.2",
-        "code": "18.3"
-      },
-      "substanceTreatmentRefusalReason": "19",
-      "indication": "20",
-      "CompletionStatus": "21",
-      "actionCode": "22",
-      "systemEntryDateTime": "23",
-      "administeredDrugStrengthVolume": "24",
-      "administeredDrugStrengthVolumeUnits": "25",
-      "administeredBarcodeIdentifier": "26",
-      "pharmacyOrderType": "27"
-  }
+  "giveSubIDCounter": "2",
+  "administrationSubIDCounter": "3",
+  "dateTimeStartOfAdministration": "4",
+  "dateTimeEndOfAdministration": "5",
+  "administeredCode": {
+    "id": "6.1",
+    "description": "6.2",
+    "code": "6.3"
+  },
+  "administeredAmount": "7",
+  "administeredUnits": {
+    "code": "8.1",
+    "unit": "8.2",
+    "id": "8.3"
+  },
+  "administeredDosageForm": "9",
+  "administrationNotes": {
+    "id": "10.1",
+    "name": "10.2",
+    "code": "10.3"
+  },
+  "administeringProvider": "11",
+  "administeredAtLocation": "12",
+  "administeredPer": "13",
+  "administeredStrength": "14",
+  "administeredStrengthUnits": "15",
+  "substanceLotNumber": "16",
+  "substanceExpirationDate": "17",
+  "substanceManufacturerName": {
+    "id": "18.1",
+    "name": "18.2",
+    "code": "18.3"
+  },
+  "substanceTreatmentRefusalReason": "19",
+  "indication": "20",
+  "CompletionStatus": "21",
+  "actionCode": "22",
+  "systemEntryDateTime": "23",
+  "administeredDrugStrengthVolume": "0",
+  "administeredDrugStrengthVolumeUnits": "0",
+  "administeredBarcodeIdentifier": "0",
+  "pharmacyOrderType": "0"
+}

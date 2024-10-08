@@ -1,70 +1,74 @@
 {
-    "orderControl": "2",
-      "placerOrderNumber": {
-        "number": "3.1",
-        "id": "3.2",
-        "code": "3.3",
-        "identifier": "3.4"
-      },
-      "fillerOrderNumber": {
-        "entityIdentifier": "4.1",
-        "name": "4.2",
-        "universalId": "4.3",
-        "uidType": "4.4"
-      },
-      "placerGroupNumber": "5",
-      "orderStatus": "6",
-      "responseFlag": "7",
-      "quantityTiming": "8",
-      "parent": "9",
-      "dateTimeOfTransaction": "10",
-      "verifiedBy": "11",
-      "provider": {
-        "id": "12.1",
-        "firstName": "12.2",
-        "lastName": "12.3"
-      },
-      "enterersLocation": "13",
-      "callBackPhoneNumber": [
-        {
-          "code": "WPN",
-          "type": "",
-          "emailAddress": "",
-          "countryCode": "",
-          "extension": "",
-          "text": "",
-          "anyText": ""
-        }
-      ],
-      "orderEffectiveDateTime": "15",
-      "orderControlCodeReason": "16",
-      "enteringOrganization": "17",
-      "actionBy": "18",
-      "advancedBeneficiaryNoticeCode": "19",
-      "orderingFacilityName": {
-        "name": "20.1",
-        "codeType": "20.2",
-        "code": "20.3",
-        "uidType": "20.4",
-        "universalId": "20.5"
-      },
-      "orderingFacilityAddress": [
-        {
-          "line1": "1005 Healthcare Drive",
-          "line2": "",
-          "city": "Ann Arbor",
-          "state": "MI",
-          "postalCode": "99999",
-          "append": "USA"
-        }
-      ],
-      "orderingFacilityPhoneNumber": "22",
-      "orderingProviderAddress": "23",
-      "orderStatusModifier": "24",
-      "fillersExpectedAvailabilityDateTime": "25",
-      "confidentialityCode": "26",
-      "orderType": "27",
-      "entererAuthorizationMode": "28",
-      "universalServiceidentifier": "29"
-  }
-  
+  "orderControl": "2",
+    "placerOrderNumber": {
+      "number": "3.1",
+      "id": "3.2",
+      "code": "3.3",
+      "identifier": "3.4"
+    },
+    "fillerOrderNumber": {
+      "entityIdentifier": "4.1",
+      "name": "4.2",
+      "universalId": "4.3",
+      "uidType": "4.4"
+    },
+    "placerGroupNumber": "5",
+    "orderStatus": "6",
+    "responseFlag": "7",
+    "quantityTiming": "8",
+    "parent": "9",
+    "dateTimeOfTransaction": "10",
+     "enteredBy":{
+        "id":"11.1",
+        "firstName":"11.2",
+        "lastName": "11.3"
+              },
+    "verifiedBy": "12",
+    "provider": {
+      "id": "13.1",
+      "firstName": "13.2",
+      "lastName": "13.3"
+    },
+    "enterersLocation": "14",
+    "callBackPhoneNumber": [
+      {
+        "code": "15.1",
+        "type": "15.2",
+        "emailAddress": "15.3",
+        "countryCode": "15.4",
+        "extension": "15.5",
+        "text": "15.6",
+        "anyText": "15.7"
+      }
+    ],
+    "orderEffectiveDateTime": "16",
+    "orderControlCodeReason": "17",
+    "enteringOrganization": "18",
+    "actionBy": "19",
+    "advancedBeneficiaryNoticeCode": "20",
+    "orderingFacilityName": {
+      "name": "21.1",
+      "codeType": "21.2",
+      "code": "21.3",
+      "uidType": "21.4",
+      "universalId": "21.5"
+    },
+    "orderingFacilityAddress": [
+      {
+        "line1": "22.1",
+        "line2": "22.2",
+        "city": "22.3",
+        "state": "22.4",
+        "postalCode": "22.5",
+        "append": "22.6"
+      }
+    ],
+    "orderingFacilityPhoneNumber": "23",
+    "orderingProviderAddress": "0",
+    "orderStatusModifier": "0",
+    "fillersExpectedAvailabilityDateTime": "0",
+    "confidentialityCode": "0",
+    "orderType":"0",
+    "entererAuthorizationMode": "0",
+    "universalServiceidentifier": "0"
+}

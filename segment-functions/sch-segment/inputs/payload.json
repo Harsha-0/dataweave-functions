@@ -1,12 +1,30 @@
- {
-    "placerAppointmentId": "VISIT-SCH-1",
-    "fillerAppointmentId": "VISIT-SCH-1",
-    "appointmentType": "",
-    "appointmentDuration": "",
-    "appointmentDurationUnits": "",
-    "appointmentTimingQuantity": {
-      "startDateTime": "2024-04-23T12:00:00",
-      "endDateTime": ""
-    },
-    "fillerStatusCode": "ARR"
-  }
+{
+  "placerAppointmentId": "VISIT-SCH-1",
+  "fillerAppointmentId": "VISIT-SCH-1",
+  "occuranceNumber": "",
+  "placerGroupNumber": "",
+  "scheduleID": "",
+  "eventReason": "",
+  "appointmentReason": "",
+  "appointmentType": "",
+  "appointmentDuration": "",
+  "appointmentDurationUnits": "",
+  "appointmentTimingQuantity": {
+    "startDateTime": "2024-04-23T12:00:00",
+    "endDateTime": ""
+  },
+  "placerContactPerson": "",
+  "placerContactPhoneNumber": "",
+  "placerContactAddress": "",
+  "placerContactLocation": "",
+  "fillerContactPerson": "",
+  "fillerContactPhoneNumber": "",
+  "fillerContactAddress": "",
+  "fillerContactLocation": "",
+  "enteredbyPerson": "",
+  "enteredbyPhoneNumber": "",
+  "enteredbyLocation": "",
+  "parentPlacerAppointmentID": "",
+  "parentFillerAppointmentID": "",
+  "fillerStatusCode": "ARR"
+}

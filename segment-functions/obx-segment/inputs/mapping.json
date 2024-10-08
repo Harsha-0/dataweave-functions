@@ -1,44 +1,44 @@
 {
-      "setId": "2",
-      "observationIdentifier": {
-        "id": "4.1",
-        "description": "4.2",
-        "code": "4.3"
-      },
-      "observationMethod": {
-        "id": "5.1",
-        "description": "5.2",
-        "code": "5.3"
-      },
-      "observationValue": {
-        "id": "6.1",
-        "description": "6.2",
-        "code": "6.3"
-      },
-      "valueType": "3",
-      "observationSubID": "7",
-      "units": "8",
-      "referencesRange": "9",
-      "abnormalFlags": "10",
-      "probability": "11",
-      "natureOfAbnormalTest": "12",
-      "observationResultStatus": "13",
-      "effectiveDateOfReferenceRangeValues": "14",
-      "userDefinedAccessChecks": "15",
-      "dateTimeOfTheObservation": "16",
-      "producersReference": "17",
-      "responsibleObserver": "18",
-      "equipmentInstanceIdentifier": "19",
-      "dateTimeOfTheAnalysis": "20",
-      "reservedForHarmonizationWithV2.6": "21",
-      "performingOrganizationName": {
-        "name": "22.1",
-        "codeType": "22.2",
-        "universalId": "22.3",
-        "uidType": "22.4",
-        "code": "22.5",
-        "identifier": "22.6"
-      },
-      "performingOrganizationAddress": "23",
-      "performingOrganizationMedicalDirector": "24"
-  }
+  "setId": "2",
+"valueType": "3",
+  "observationIdentifier": {
+    "id": "4.1",
+    "description": "4.2",
+    "code": "4.3"
+  },
+  "observationMethod": {
+    "id": "5.1",
+    "description": "5.2",
+    "code": "5.3"
+  },
+  "observationValue": {
+    "id": "6.1",
+    "description": "6.2",
+    "code": "6.3"
+  },
+  "observationSubID": "7",
+  "units": "8",
+  "referencesRange": "9",
+  "abnormalFlags": "10",
+  "probability": "11",
+  "natureOfAbnormalTest": "12",
+  "observationResultStatus": "13",
+  "effectiveDateOfReferenceRangeValues": "14",
+  "userDefinedAccessChecks": "15",
+  "dateTimeOfTheObservation": "16",
+  "producersReference": "17",
+  "responsibleObserver": "0",
+  "equipmentInstanceIdentifier": "0",
+  "dateTimeOfTheAnalysis": "0",
+  "reservedForHarmonizationWithV2.6": "0",
+  "performingOrganizationName": {
+    "name": "0",
+    "codeType": "0",
+    "universalId": "0",
+    "uidType": "0",
+    "code": "0",
+    "identifier": "0"
+  },
+  "performingOrganizationAddress": "0",
+  "performingOrganizationMedicalDirector": "0"
+}

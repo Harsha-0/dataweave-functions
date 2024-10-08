@@ -55,7 +55,7 @@
     }
   ],
   "multipleBirthIndicator": "11",
-  "birthOrder": "12",
-  "clientLastUpdatedDate": "13",
-  "clientLastUpdateFacility": "14"
+  "birthOrder": "0",
+  "clientLastUpdatedDate": "0",
+  "clientLastUpdateFacility": "0"
 }

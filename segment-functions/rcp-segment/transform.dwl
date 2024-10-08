@@ -67,3 +67,4 @@ var restructure = ((0 to maxFieldValue) map (inputData(result.RCP) filterObject 
 
 ---
 hl7("RCP", restructure) 
+
